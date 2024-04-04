@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cfg.bean.Usuario" table="usuario">
+    <id column="idUsuario" name="idUsuario">
+      <generator class="identity"/>
+    </id>
+    <property column="usuario" name="usuario"/>
+    <property column="password" name="password"/>
+    <property column="nivelAcceso" name="nivelAcceso"/>
+  </class>
+  <sql-query name="sp_AutenticarUsuario" callable="true">
+    <return alias="Usuario" class="org.fundacionkinal.sgkinal.cfg.bean.Usuario">
+        <return-property name="idUsuario" column="idUsuario"/>
+        <return-property name="usuario" column="usuario"/>
+        <return-property name="password" column="password"/>
+        <return-property name="nivelAcceso" column="nivelAcceso"/>
+    </return>
+    {call sp_AutenticarUsuario(:login,:password)}
+  </sql-query>
+</hibernate-mapping>

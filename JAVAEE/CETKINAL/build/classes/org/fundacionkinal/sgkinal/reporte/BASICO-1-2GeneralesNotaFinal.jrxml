@@ -1,0 +1,869 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="NotasxGrupo" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9bae6fe5-00be-4f15-91ec-4f7bb6f8a3a7">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="229"/>
+	<property name="ireport.y" value="207"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="grupoCT" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="bim" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["//172.16.16.19/aplicacion/appkinal/reporte"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+    `alumno`.`carne`
+    , `alumno`.`apellidos`
+    , `alumno`.`nombres`
+    , `grupo_ct`.`grupo`
+FROM
+    `datos_academico`
+    INNER JOIN `alumno`
+        ON (`datos_academico`.`carne` = `alumno`.`carne`)
+    INNER JOIN `grupo_ct`
+        ON (`datos_academico`.`idGrupoCT` = `grupo_ct`.`idGrupoCT`)
+WHERE `grupo_ct`.`grupo` like $P{grupoCT} and alumno.estado = 'ALTA'
+ORDER BY alumno.apellidos]]>
+	</queryString>
+	<field name="carne" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grupo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="ProCN" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="CN_COUNT" class="java.lang.Integer" calculation="Count"/>
+	<variable name="PerdidaCN" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="ReprobadoCN" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[new Double($V{PerdidaCN}*100)]]></variableExpression>
+	</variable>
+	<variable name="ProCP" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="PromedioGeneral" class="java.lang.Integer"/>
+	<title>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="c460a552-f781-408e-8b4c-4056a01346e9" style="table" x="675" y="0" width="75" height="36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[GRUPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="14a8237b-fe39-4802-b4d6-16cea2fa4338" style="table" x="300" y="0" width="375" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[MATERIAS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="3adfc1bd-bc7d-49f7-9d12-df407f802bf9" x="0" y="0" width="300" height="36"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="8e743e2b-3d48-4be7-bcab-e92c17ceb2a7" x="0" y="0" width="285" height="12"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[  CENTRO EDUCATIVO TECNICO LABORAL KINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f5bd48c3-34e4-475f-af57-4c4761872736" x="0" y="12" width="285" height="12"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[  CICLO ESCOLAR 2013]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="11d8f7a6-d464-4ea6-a991-7af94ca00926" style="table" x="0" y="24" width="300" height="12"/>
+				<textElement>
+					<font size="8" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[  BIMESTRE]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="5195af9e-ae03-4a72-8d04-d8b469a2a65b" x="52" y="24" width="100" height="12"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{bim}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a6f3fdc7-a030-4acb-a37b-e6284a87ebb7" style="table" x="300" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[1]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3f389b9e-03cb-43e6-a1c6-d6b02a4149ed" style="table" x="325" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="353aeddd-53c0-46ee-ac1f-abfde2d0e6b1" style="table" x="350" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[3]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aafe4213-633f-47d4-92a0-0a61db6394ee" style="table" x="375" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[4]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3394dbf6-da1d-4399-aacb-533dac3ea648" style="table" x="400" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[5]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="455faf66-369e-4e45-a2d8-adc10175eb1a" style="table" x="425" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="16000b6e-f54b-40cc-b263-62ce78ee022c" style="table" x="450" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[7]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dc6c7ce9-7d89-4e73-aa44-4027fc2c219f" style="table" x="475" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="66998a4a-4227-4a90-b773-efc965fc778b" style="table" x="500" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[9]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d64c82e3-d0ef-4724-a05d-1b3f6507adc7" style="table" x="525" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[10]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="576f6448-68e7-491f-828a-279ac0a00ba0" style="table" x="550" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3fe987de-17db-44d8-83d2-041d7a00a93e" style="table" x="575" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[12]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1ee528f-f37b-4ea4-a9a3-1a2fce044308" style="table" x="600" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[13]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0fe306f6-d648-428f-8563-8003a01f2d6d" style="table" x="625" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[14]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="26200c75-b74a-42a6-b828-ba8e35dc98ea" style="table" x="650" y="24" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[15]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="bafab157-7751-49d7-a4da-3978ff7b2921" style="table" x="0" y="78" width="25" height="12"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eead995a-83f9-4549-96e4-a3a210d3f3e5" style="table" x="175" y="78" width="88" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b4dd563c-4b0b-4fb4-9b75-7c30a97962f3" style="table" x="75" y="78" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9c2a2b52-b479-44d0-a408-93136c4266f1" style="table" x="25" y="78" width="50" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carné]]></text>
+			</staticText>
+			<frame>
+				<reportElement uuid="2fcabb9b-161a-407b-9151-30a47a07ad8e" style="table" x="0" y="0" width="300" height="78"/>
+				<image>
+					<reportElement uuid="bce8444a-452a-490b-b53b-7a0ca49f6642" x="16" y="3" width="233" height="72"/>
+					<imageExpression><![CDATA[$P{SUBREPORT_DIR} +"//kinal.jpg"]]></imageExpression>
+				</image>
+			</frame>
+			<staticText>
+				<reportElement uuid="bb704aa6-d16e-4038-a72d-8cf0e0e95a6f" style="table" x="425" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDIOMA ESPAÑOL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7477936a-00b3-4e1e-bb43-961698c4d665" style="table" x="300" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIENCIAS NATURALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="07cfaa56-7e97-416b-98d7-c06e23358898" style="table" x="325" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TECNOLOGÍA DE INFORMACIÓN Y COMUNICACIÓN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f554e6a3-46c0-469b-87de-a19936641d51" style="table" x="350" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONTABILIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6d1ecea0-d63a-4fab-a68a-0506b13d3c15" style="table" x="375" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="7" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EDUCACION FISICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5ae5a234-44d4-467c-83f9-a342a04c93c2" style="table" x="400" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CIENCIAS SOCIALES Y FORMACIÓN CIUDADANA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aa86eb57-38ab-4f70-a7e3-8b1557ab44f4" style="table" x="450" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ARTES INDUSTRIALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31427b4b-0a9f-42fc-a6e4-6e38cf7fddbe" style="table" x="475" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IDIOMA INGLES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2e4fa680-52d0-4a53-a37e-30a2e4ae88fb" style="table" x="500" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MATEMATICA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="31e5aeec-3ee4-4cd1-b255-89884af896f3" style="table" x="525" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MECANOGRAFIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e3cc9b1c-ee16-44e0-8792-c1f137bb0145" style="table" x="550" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMACION MUSICAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c49d73da-45e6-44d0-b242-b791eb6cff00" style="table" x="575" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ARTES PLASTICAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5f66c998-ef68-4e43-a9d2-5dd41f3639a7" style="table" x="600" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RELIGION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80d92183-0e97-434d-8475-d87f87ea2c6b" style="table" x="625" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EMPRENDEDORES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5da72991-2f36-415f-9b13-1c0622a1e2a1" style="table" x="650" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[VALORES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3111f771-0621-41fb-9587-f5173767ba60" style="table" x="675" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Mat. Repro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="49a99d7c-c7ab-467e-8898-a39d5a11ed3a" style="table" x="700" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Mat. Apro.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b1ca30e8-7e55-4fc4-af86-4379c83e3e77" style="table" x="725" y="0" width="25" height="90"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="Tahoma" size="8" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Prom. Gral]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a4b47c28-733e-4fc5-9c97-cd14c4ad9d54" style="table" x="263" y="78" width="37" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CT]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement uuid="ffa13498-641e-462c-acb5-38f07cbabecd" style="table" x="25" y="0" width="50" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carne}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="eb9012df-3e34-46ae-aa85-acae8999b8e2" style="table" x="175" y="0" width="88" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["   "+$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="ce6cd1ae-22b0-40ce-b049-b8d4438a3a96" style="table" x="75" y="0" width="100" height="12"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["   "+$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="358e0d94-eda4-4d6d-b75a-24e1b4b098ba" style="table" x="0" y="0" width="25" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="c4ad3540-780f-4e26-b485-51ca7b8fab8d" x="300" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[($P{bim}==6)?"final":"bim"+$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//CNNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="06656bf3-f1ae-459f-ad6e-47a8a38343a3" x="325" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//CPNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="f860eca8-6181-46b9-a510-2f067c049eb8" x="350" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//CBNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="474e5553-d7d1-46ba-8c86-b2f01df3eed6" x="375" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//EFNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="4d61730c-e2c1-499b-acbb-fc0b28497a16" x="400" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//CSNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="7ae7df11-7384-4dad-bd9d-0ce648bbb5c2" x="425" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//IDNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="0a39b9a6-202a-4667-9773-d37edf68f8a8" x="450" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//AINotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="7f8dcc38-ccf4-4948-bf8e-31e79dc79e7e" x="475" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//ENNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="5ec87748-a574-43a4-a7e6-286eb5f832b2" x="500" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//MTNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="4524ad0d-3c74-4cfe-a8d3-fd8ed3054fc5" x="525" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//MCNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="63082b53-04c9-4c90-8ebf-f063a4f4f05f" x="550" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//FMNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="6a800e68-5fe5-4b3b-b66b-9bf64da48c77" x="575" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//APNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="9affc067-925a-40a9-a723-2f9d2bcbf57b" x="600" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//RLNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="a1bfaa15-0835-484f-abd8-d5482b19e007" x="625" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//EPNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="f78bdacb-bc41-43a3-8b2f-85fb3b8cd8e0" x="650" y="0" width="25" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//VLNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="f5934111-abdf-4f79-b057-85b7795e7320" x="675" y="0" width="75" height="12"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<returnValue subreportVariable="promedioGeneral" toVariable="PromedioGeneral"/>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//Grupo.jasper"]]></subreportExpression>
+			</subreport>
+			<textField>
+				<reportElement uuid="1a5d967d-60fa-4ff3-a1b2-ea0c8af29730" style="table" x="263" y="-1" width="37" height="12"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="146" splitType="Stretch">
+			<rectangle radius="2">
+				<reportElement uuid="ce2dc2d4-dda7-4ccd-95b3-f4af052c1e48" mode="Transparent" x="300" y="1" width="450" height="36"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="2507a428-0678-48d7-b99d-78df514293cc" style="table" x="0" y="1" width="200" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="42a8325f-1d7e-465e-8cd8-2c3d7a18ac44" style="table" x="200" y="1" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Promedio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="dddae40d-4f5d-4969-9b02-6cca521f0b1e" style="table" x="200" y="13" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% Aprobado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="69a829df-faa7-46a4-a0f8-40bde4685d7f" style="table" x="200" y="25" width="100" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[% Reprobado]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b4e6d0be-fc86-41d2-a1da-8c9969921029" style="table" x="0" y="25" width="200" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Numero de alumnos]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="cac6763b-9c73-463a-a599-2292751d2d90" x="300" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioCNGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="f4970697-c057-45ab-b844-9b238dce9656" x="325" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioCPGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="3962a8b7-1dbd-4274-aaac-f4c1ef87748f" x="350" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioCBGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="76a7dd89-fef7-45eb-ba49-d0b7b8bcee58" x="375" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioEFGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="c9b9cc10-3e8f-4920-8d73-728a8409da34" x="400" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioCSGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="04845dd2-cab9-4ebb-8957-e34e88bc5f49" x="425" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioIDGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="34611d15-5745-4859-8282-0a029e4401d7" x="450" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioAIGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="14b143da-b8c6-48c9-9c5f-474871a49a71" x="475" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioENGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="1e397d11-7c9d-4cb7-8b78-1d2ea0d8bab2" x="500" y="1" width="26" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioMTGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="36ca6088-92f1-46ca-a00e-a9b881de0dd9" x="525" y="1" width="25" height="36" isPrintInFirstWholeBand="true"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioMCGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="d0756403-414f-4c49-bf5b-cd6c76386dd9" x="550" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioFMGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="0f7b905e-939b-48f3-9d54-b92c190c3207" x="575" y="1" width="26" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioAPGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="d0b58761-1bf6-4809-8b46-693a568e40f0" x="600" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioRLGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="89d3bd8a-f7ed-426f-9fba-5f664dadc2f4" x="625" y="1" width="25" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioEPGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="80bb321c-9bfe-477c-ae8b-6d943a2068c7" x="650" y="13" width="24" height="24"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//promedioVLGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="8175346b-ceb2-469a-a3c7-cd9fe377c95a" x="0" y="38" width="325" height="72"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//altoRendimientoGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="33ab2851-61aa-4e20-aa9a-fadf579085ce" x="325" y="38" width="325" height="72"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//bajoRendimientoGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="e7886376-fc9b-4543-b303-f79036a38359" stretchType="RelativeToTallestObject" x="300" y="110" width="350" height="36"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//materiasReprobadasGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<subreport>
+				<reportElement uuid="5def9565-7a6a-47a3-9215-7d3333c15be8" x="650" y="1" width="24" height="12"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupoCT}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="bim">
+					<subreportParameterExpression><![CDATA[$P{bim}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "//PromedioNotaVLGeneralNotaFinal.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle radius="2">
+				<reportElement uuid="a54e7886-81f9-4c83-9d4b-5017af5531b4" x="674" y="1" width="76" height="36"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="d82d92d1-83e5-4d4a-ae06-05187315eae1" x="681" y="25" width="64" height="9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="5"/>
+				</textElement>
+				<text><![CDATA[PROMEDIO GENERAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="09184088-b242-42df-ad84-fc19f85883b4" x="688" y="5" width="49" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PromedioGeneral}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.GrupoPE" table="grupo_pe">
+    <id column="idGrupoPE" name="idGrupoPE">
+      <generator class="identity"/>
+    </id>
+    <property column="grupo" name="grupo"/>
+  </class>
+</hibernate-mapping>

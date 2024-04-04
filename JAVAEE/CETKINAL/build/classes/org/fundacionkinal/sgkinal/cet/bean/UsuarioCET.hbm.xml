@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.UsuarioCET" table="usuario">
+    <id column="idUsuario" name="idUsuario">
+      <generator class="identity"/>
+    </id>
+    <property column="usuario" name="usuario"/>
+    <property column="password" name="password"/>
+    <property column="nivelAcceso" name="nivelAcceso"/>
+    <set cascade="all" lazy="false" name="instructor" table="instructor">
+      <key>
+        <column name="idUsuario"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.Instructor"/>
+    </set>
+  </class>
+</hibernate-mapping>

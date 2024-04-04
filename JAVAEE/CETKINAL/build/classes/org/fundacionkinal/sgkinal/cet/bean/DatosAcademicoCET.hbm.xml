@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.DatosAcademicoCET" table="datos_academico">
+    <id column="carne" name="carne">
+      <generator class="foreign">
+           <param name="property">alumno</param>
+       </generator>
+    </id>
+    <property column="anio" name="anio"/>
+    <many-to-one column="idGrupoCT" name="grupoCT" lazy = "false"/>
+    <many-to-one column="idGrupoBA" name="grupoBA" lazy="false"/>
+    <many-to-one column="idGrupoPE" name="grupoPE" lazy="false"/>
+    <many-to-one column="idCarrera" name="carrera" lazy = "false"/>
+    <one-to-one class="org.fundacionkinal.sgkinal.cet.bean.Alumno" constrained="true" name="alumno" lazy="false"/>    
+  </class>
+</hibernate-mapping>

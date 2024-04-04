@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.Factura" table="factura">
+    <id column="idFactura" name="idFactura">
+      <generator class="identity"/>
+    </id>
+    <property column="numeroFactura" name="numeroFactura"/>
+    <property column="descripcion" name="descripcion"/>
+    <property column="carne" name="carne"/>
+    <property column="fecha" name="fecha"/>
+    <property column="total" name="total"/>
+    <property column="numeroBoleta" name="numeroBoleta"/>
+    <property column="efectivo" name="efectivo"/>
+    <property column="cheque" name="cheque"/>
+    <property column="banco" name="banco"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.contabilidad.bean.Cliente" column="nit" name="cliente"/>
+    <set name="detalleFactura" table="detalle_factura" cascade="all">
+      <key>
+        <column name="idFactura" not-null="true"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.contabilidad.bean.DetalleFactura"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.RespuestaClave" table="respuesta_clave">
+    <id column="idDetalle" name="idDetalle" type="java.lang.Integer">
+      <generator class="identity"/>
+    </id>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.ExamenClave" column="idClave" name="examenClave"/>
+    <property column="numeroPregunta" name="numeroPregunta" type="java.lang.Integer"/>
+    <property column="valor" name="valor" type="java.lang.Double"/>
+    <property column="respuesta" name="respuesta" type="java.lang.String"/>
+  </class>
+</hibernate-mapping>

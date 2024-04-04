@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BoletaNotasPromedioGeneral" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="229d43b4-521b-402c-b516-db0135ca9151">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="carne" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT round(avg(ROUND(( ifnull(if(bim1>ifnull(r1,0),bim1,r1),0) + ifnull(if(bim2>ifnull(r2,0),bim2,r2),0) + ifnull(if(bim3>ifnull(r3,0),bim3,r3),0) + ifnull(if(bim4>ifnull(r4,0),bim4,r4),0) + ifnull(if(bim5>ifnull(r5,0),bim5,r5),0) + ifnull(final,0)) /
+	6,0)),0) promedioGeneral from nota where carne = $P{carne} and idAsignatura <> 'VL']]>
+	</queryString>
+	<field name="promedioGeneral" class="java.math.BigDecimal"/>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="8320a508-24f9-4032-bb20-ecd083a34c26" x="0" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{promedioGeneral}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

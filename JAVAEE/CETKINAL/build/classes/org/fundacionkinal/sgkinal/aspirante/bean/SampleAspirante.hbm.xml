@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.SampleAspirante" table="aspirante">
+    <id column="ID_aspirante" name="ID_aspirante" type="java.lang.Integer">
+      <generator class="native"/>
+    </id>
+    <property column="nombres" name="nombres" type="java.lang.String"/>
+    <property column="apellidos" name="apellidos" type="java.lang.String"/>
+    <property column="no_expediente" name="no_expediente" type="java.lang.String"/>
+    <property column="edad" name="edad" type="java.lang.Integer"/>
+    <property column="resultado_examen" name="resultado_examen" type="java.lang.String"/>
+    <property column="anio_asignacion" name="anio_asignacion" type="java.lang.Integer"/>
+    <many-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.Religion" column="ID_religion" name="religion"/>
+    <many-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.Fecha_examen" column="ID_fechaExamen" name="fechaExamen"/>
+    <many-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.Colegio" column="ID_colegio" name="colegio"/>
+    <set cascade="all" fetch="select" inverse="true" lazy="true" name="datosAcademico" table="datos_academico">
+      <key>
+        <column name="ID_aspirante"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.aspirante.bean.DatosAcademico"/>
+    </set>
+  </class>
+</hibernate-mapping>

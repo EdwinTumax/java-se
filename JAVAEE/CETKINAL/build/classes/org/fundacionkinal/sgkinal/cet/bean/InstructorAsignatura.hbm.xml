@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.InstructorAsignatura" table="instructor_asignatura">
+    <id column="idAsig" name="idAsig">
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.Instructor" column="idInstructor" name="instructor"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.Asignatura" column="idAsignatura" name="asignatura" lazy="false"/>
+    <property column="dias" name="dias"/>
+    <set cascade="all" name="instructorGrupoCT" table="instructor_grupo_ct" lazy="false">
+      <key>
+        <column name="idAsig"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorGrupoCT"/>
+    </set>
+    <set cascade="all" name="instructorGrupoBA" table="instructor_grupo_ba" lazy="false">
+      <key>
+        <column name="idAsig"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorGrupoBA"/>
+    </set>
+    <set cascade="all" name="instructorGrupoPE" table="instructor_grupo_pe" lazy="false">
+      <key>
+        <column name="idAsig"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorGrupoPE"/>
+    </set>
+  </class>
+</hibernate-mapping>

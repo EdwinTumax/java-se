@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.EscuelaCON" table="escuela">
+    <id column="idEscuela" name="idEscuela">
+      <generator class="identity"/>
+    </id>
+    <property column="escuela" name="escuela"/>
+    <set lazy="false" name="talonarios" table="talonario">
+      <key>
+        <column name="idEscuela"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.contabilidad.bean.Talonario"/>
+    </set>
+  </class>
+</hibernate-mapping>

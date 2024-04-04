@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BoletaNotas" language="groovy" pageWidth="396" pageHeight="612" columnWidth="356" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="110f53c1-04b4-4216-9ff0-3ccfc770a1e1">
+	<property name="ireport.zoom" value="1.815000000000003"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="75714c28-cab2-4847-a7f3-014914c9b05d"/>
+	<subDataset name="dataset1" uuid="bb482f3b-1c31-4387-8dd8-a21306b54b54"/>
+	<subDataset name="Table Dataset 2" uuid="c5d9bab5-2fc6-490c-9b0e-10ca975e3574"/>
+	<parameter name="carne" class="java.lang.String"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="grupoCT" class="java.lang.String"/>
+	<parameter name="jornada" class="java.lang.String"/>
+	<parameter name="nivel" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="boleta" class="java.lang.String"/>
+	<parameter name="icono" class="java.io.InputStream"/>
+	<parameter name="Valores" class="java.io.InputStream"/>
+	<parameter name="promediosFinales" class="java.io.InputStream"/>
+	<parameter name="promedioGeneral" class="java.io.InputStream"/>
+	<parameter name="PromedioAsignatura" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT
+    `nota`.`idAsignatura`
+    ,`asignatura`.`asignatura`
+    , `nota`.`bim1`
+    , `nota`.`r1`
+    , `nota`.`bim2`
+    , `nota`.`r2`
+    , `nota`.`bim3`
+    , `nota`.`r3`
+    , `nota`.`bim4`
+    , `nota`.`r4`
+    , `nota`.`bim5`
+    , `nota`.`r5`
+    , `nota`.`final`
+    , ((`nota`.`bim1`+ `nota`.`bim2`+`nota`.`bim3`+`nota`.`bim4`+`nota`.`bim5`+`nota`.`final`)/6) AS Promedio
+FROM
+    `nota`
+    INNER JOIN `asignatura`
+        ON (`nota`.`idAsignatura` = `asignatura`.`idAsignatura`)
+        WHERE nota.carne = $P{carne} and asignatura.idAsignatura <> 'VL';]]>
+	</queryString>
+	<field name="idAsignatura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="asignatura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bim1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="r1" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bim2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="r2" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bim3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="r3" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bim4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="r4" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bim5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="r5" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="final" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Promedio" class="java.math.BigDecimal"/>
+	<variable name="Promedio_B1" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$F{bim1}]]></variableExpression>
+	</variable>
+	<variable name="Promedio_B2" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$F{bim2}]]></variableExpression>
+	</variable>
+	<variable name="Promedio_B3" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$F{bim3}]]></variableExpression>
+	</variable>
+	<variable name="Promedio_B4" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$F{bim4}]]></variableExpression>
+	</variable>
+	<variable name="Promedio_B5" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$F{bim5}]]></variableExpression>
+	</variable>
+	<variable name="Promedio_Final" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$F{final}]]></variableExpression>
+	</variable>
+	<variable name="Promedios" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[$F{Promedio}]]></variableExpression>
+	</variable>
+	<variable name="Promedio_R1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[($F{r1}-$F{bim1})]]></variableExpression>
+	</variable>
+	<variable name="Promedio_R2" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[($F{r2}-$F{bim2})]]></variableExpression>
+	</variable>
+	<variable name="Promedio_R3" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[($F{r3}-$F{bim3})]]></variableExpression>
+	</variable>
+	<variable name="Promedio_R4" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[($F{r4}-$F{bim4})]]></variableExpression>
+	</variable>
+	<variable name="Promedio_R5" class="java.lang.Double" calculation="Average">
+		<variableExpression><![CDATA[($F{r5}-$F{bim5})]]></variableExpression>
+	</variable>
+	<variable name="Perdida_B1" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[($P{boleta}.equalsIgnoreCase("sesenta") ? new Integer($F{bim1}.doubleValue()< 60 ? 1 : 0) : new Integer($F{bim1}.doubleValue()< 70 ? 1 : 0) )]]></variableExpression>
+	</variable>
+	<variable name="Perdida_B2" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[($P{boleta}.equalsIgnoreCase("sesenta") ? new Integer($F{bim2}.doubleValue()< 60 ? 1 : 0) : new Integer($F{bim2}.doubleValue()< 70 ? 1 : 0) )]]></variableExpression>
+	</variable>
+	<variable name="Perdida_B3" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[($P{boleta}.equalsIgnoreCase("sesenta") ? new Integer($F{bim3}.doubleValue()< 60 ? 1 : 0) : new Integer($F{bim3}.doubleValue()< 70 ? 1 : 0) )]]></variableExpression>
+	</variable>
+	<variable name="Perdida_B4" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[($P{boleta}.equalsIgnoreCase("sesenta") ? new Integer($F{bim4}.doubleValue()< 60 ? 1 : 0) : new Integer($F{bim4}.doubleValue()< 70 ? 1 : 0) )]]></variableExpression>
+	</variable>
+	<variable name="Perdida_B5" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[($P{boleta}.equalsIgnoreCase("sesenta") ? new Integer($F{bim5}.doubleValue()< 60 ? 1 : 0) : new Integer($F{bim5}.doubleValue()< 70 ? 1 : 0) )]]></variableExpression>
+	</variable>
+	<variable name="Perdida_Final" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[($P{boleta}.equalsIgnoreCase("sesenta") ? new Integer($F{final}.doubleValue()< 60 ? 1 : 0) : new Integer($F{final}.doubleValue()< 70 ? 1 : 0) )]]></variableExpression>
+	</variable>
+	<variable name="contadorDeCursos" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[new Integer($F{bim1}.doubleValue()< 101 ? 1 : 0)]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="120" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="04ce25fe-703a-4407-b7d1-6c67b7492e99" x="0" y="75" width="51" height="13"/>
+				<textElement/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad39327d-1822-4da2-8ccc-13d214331d4d" x="250" y="75" width="45" height="13"/>
+				<textElement/>
+				<text><![CDATA[Carné:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="41777f93-6def-4281-9ae7-efe34bd2d29d" stretchType="RelativeToBandHeight" x="51" y="75" width="191" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="117b05e7-33cb-4270-8486-ada683d061c5" x="295" y="75" width="61" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{carne}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6e54c373-238e-4d88-837a-b2935d091d0b" x="68" y="-1" width="50" height="19"/>
+				<textElement>
+					<font fontName="Tahoma" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5f479257-5ea9-4c09-bfb3-79e483f13adc" x="68" y="18" width="166" height="39"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[Centro Educativo Técnico Laboral 6av. 13-54 Zona 7 Colonia Landivar Teléfono: 2387-7600]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a537111c-7108-41d9-a9b7-2a44c6f3856a" positionType="Float" stretchType="RelativeToBandHeight" x="142" y="55" width="100" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[www.kinal.org.gt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ba2e4a4-7cf1-4ab1-85f2-978b4dd1e058" x="0" y="93" width="92" height="13"/>
+				<textElement/>
+				<text><![CDATA[Grupo Académico:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f571aec5-8dd0-4b17-b640-70094731021b" x="103" y="93" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{grupoCT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a629c230-75f3-4323-b91b-83016812acda" x="250" y="93" width="45" height="13"/>
+				<textElement/>
+				<text><![CDATA[Jornada:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b36cbeb1-783e-4507-9648-a1a54b8cd7de" x="295" y="93" width="61" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{jornada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d1aa7537-101e-4f8e-89cb-f50e8585fbf3" style="table" x="0" y="106" width="355" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nivel}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="160e1b7e-f041-45eb-91bd-dd0db25f89f8" x="7" y="1" width="54" height="54"/>
+				<imageExpression><![CDATA[$P{icono}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="be66c3d0-9ec2-43b9-a92a-18fdea0a510f" style="table" x="0" y="0" width="115" height="36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASIGNATURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ffde1967-7056-4445-8477-372eaa8de83a" style="table" x="115" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0db5727f-e4e0-497c-a57c-3852f0a726b0" style="table" x="135" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[RP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a66c7fe9-dffc-471a-9bce-736395f9347a" style="table" x="155" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="30b2d957-e98f-43de-891b-dd7446da0084" style="table" x="175" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[RP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c9b8b16a-2af6-42d7-afff-22f64bdf3c21" style="table" x="195" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="afedc63a-955a-43d1-91ca-90ecf5c8a8c3" style="table" x="215" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[RP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="aea956a1-ba00-47d2-ae5f-9ef8a4e954d1" style="table" x="235" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="621e2966-bd22-4409-a4e5-826481ae41a3" style="table" x="255" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[RP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="326d0094-f669-49ce-9c72-4256accd9a10" style="table" x="275" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[B]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="18f17729-3bfa-4efb-afe8-8c39516c24b6" style="table" x="295" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[RP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f6dba84a-1ee5-4552-a350-fe075ab424c5" style="table" x="315" y="0" width="20" height="36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d84e9c8d-1abe-4b5e-9364-3f3c1e5b8ed5" style="table" x="335" y="0" width="20" height="36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[Promedio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5af58688-5e25-4ca8-8028-3dae6c71be68" style="table" x="115" y="20" width="40" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[   I       I]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8dc0f81d-392f-4179-806e-7eb1c097f4a5" style="table" x="155" y="20" width="40" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[   II     II]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0e9a52dd-7d34-485f-84fc-a4a69ec81be9" style="table" x="195" y="20" width="40" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[  III    III]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="22de3bbe-7e59-4fff-9889-b77daf6ccab5" style="table" x="275" y="20" width="40" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[    V     V]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9ff5a78d-4ae7-4180-9644-e4fc122c940b" style="table" x="235" y="20" width="40" height="16"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[   IV    IV]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="ac6fbdab-5800-4068-902a-ca88e56422f3" x="0" y="0" width="115" height="20"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1c438eab-037f-4f94-a71d-ed2809fdef95" x="15" y="-1" width="100" height="21"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asignatura}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="1fdce882-9ab0-4da4-b759-3be87a72e814" x="115" y="0" width="40" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="56eb532d-f640-435b-90b4-7053afb63b35" x="235" y="0" width="40" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="7f22261f-d288-4fb3-a31a-4f52408564eb" x="275" y="0" width="40" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="9e274c29-0a6c-4cf0-8946-26a25d4c5cee" x="315" y="0" width="40" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="c90e9178-39e1-4521-b216-e78f4ab7ac2c" x="195" y="0" width="40" height="20"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="71fb264a-c08f-4371-842a-4505c12a572b" x="0" y="-1" width="15" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT} + "."]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="def149ea-8174-4ce8-be71-3cf76bcb31ec" x="155" y="0" width="40" height="20"/>
+			</rectangle>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="5f068820-977e-490a-a870-55d094018c24" x="116" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bim1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="06513c08-9610-406f-ad3a-2c7ded0ad2bc" x="135" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{r1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="02995218-a6cf-4fb3-bcab-774a92574fdb" x="156" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bim2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="3793dcf2-b382-45cd-a608-1c7e6419a24b" x="175" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{r2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="68cf59d6-dcbc-44c5-8ae2-9c4905963cbc" x="196" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bim3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="3a99de18-164d-48e2-994c-9cc1c06f481e" x="215" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{r3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="53ef9ab1-4778-4112-9f5e-d2525fc5983c" x="236" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bim4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="a68d2d33-1c4d-4b3b-9637-1570afdb3aa9" x="255" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{r4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="79767d74-565e-4a8d-96d3-462bad41f8af" x="276" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bim5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="b2dda149-a61b-4023-99f1-890f009eaa76" x="295" y="0" width="19" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{r5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="15e31fcf-c4f2-4a1a-946f-7e41176f3baa" x="315" y="0" width="20" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{final}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="2f0b7b2c-c0a0-4403-86fe-25e3945b603f" x="335" y="0" width="20" height="20"/>
+			</rectangle>
+			<subreport>
+				<reportElement uuid="3429bca3-b5f4-491b-82b4-5408014a1e21" x="335" y="0" width="20" height="20"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$P{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="idAsignatura">
+					<subreportParameterExpression><![CDATA[$F{idAsignatura}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA["C:\\reportesCET\\PromedioPorNota.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<summary>
+		<band height="86">
+			<staticText>
+				<reportElement uuid="5f8dd9d0-93e2-406b-a0e3-7143d6a77854" style="table" x="0" y="21" width="115" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PROMEDIOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c3cb2a06-21d4-4e6e-869d-3f522b875417" style="table" x="0" y="37" width="115" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PERDIDAS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="cdc6ae5d-f220-4395-9878-73c7bc29c18d" x="115" y="21" width="40" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="869e97e2-ada5-4e45-a419-bfa3a72455ba" x="155" y="21" width="40" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="59d32779-2455-429e-a1e5-4a807fc3cd5d" x="195" y="21" width="40" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="67fb8d0e-fa40-4ab9-915f-c29c47404034" x="235" y="21" width="40" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="f2711125-9cfb-44e8-8416-ec13c488f033" x="275" y="21" width="40" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="0817722e-d32a-4e03-857d-832c2723fc96" x="315" y="21" width="20" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="00477e41-7e10-4a58-aa96-ba4c6807749e" x="335" y="21" width="20" height="32"/>
+			</rectangle>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="53df024f-ddfc-455d-a667-5c15d59268db" x="116" y="21" width="19" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Promedio_B1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="1b4e0233-c559-473a-b8ff-c79970598b5d" x="156" y="21" width="19" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Promedio_B2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="b109c5e2-e53c-440a-b254-234a57ba88f2" x="196" y="21" width="19" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Promedio_B3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="553a96c9-b975-495f-ba10-803a9e898088" x="236" y="21" width="19" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Promedio_B4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="45a439ee-08f9-452e-b7ef-fe3953324230" x="276" y="21" width="19" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Promedio_B5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0" isBlankWhenNull="true">
+				<reportElement uuid="b91d3d78-19be-45e3-8463-010bf88bf051" x="315" y="21" width="20" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Promedio_Final}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="3f64d90a-3b05-4d3f-b165-f687005810da" style="table" x="115" y="37" width="40" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Perdida_B1}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="2deeab71-d571-41dc-95bf-b15779152f87" style="table" x="155" y="37" width="40" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Perdida_B2}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="671543b0-dd2d-4905-9928-6b69de504d08" style="table" x="195" y="37" width="40" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Perdida_B3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="227b79f0-b9af-44b1-b19f-52351f831ed2" style="table" x="235" y="37" width="40" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Perdida_B4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="47d36ad1-d6d2-4d16-ae40-3346b55732a2" style="table" x="275" y="37" width="40" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Perdida_B5}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="5b29cef9-87b4-49ba-a268-9ba597564658" style="table" x="315" y="37" width="20" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{Perdida_Final}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="f4abe1a2-10b7-40f1-ab62-16e895d5e31f" x="0" y="0" width="356" height="21"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$P{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{Valores}]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement uuid="f6b85ee3-1be5-45fe-9b48-17dcb03f61df" x="94" y="75" width="45" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6"/>
+				</textElement>
+				<text><![CDATA[C = Deficiente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e34e1aff-e4ba-4c59-b9b2-b616266583e1" x="4" y="53" width="285" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6"/>
+				</textElement>
+				<text><![CDATA[B = NOTA BIMESTRE                  RP = RECUPERACIÓN EN PROCESO                 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a57f15d1-2925-446b-93f7-b1eece1b468f" x="5" y="63" width="340" height="10"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6"/>
+				</textElement>
+				<text><![CDATA[* NOTA VALORES:                     A+ = Excelente        A = Muy Bueno        B+ = Bueno        B = Aceptable        B- = Regular]]></text>
+			</staticText>
+			<subreport>
+				<reportElement uuid="b27a0cbe-7a34-43ae-a60a-9a2dade4ad1e" x="335" y="21" width="20" height="16"/>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$P{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{promedioGeneral}]]></subreportExpression>
+			</subreport>
+		</band>
+	</summary>
+</jasperReport>

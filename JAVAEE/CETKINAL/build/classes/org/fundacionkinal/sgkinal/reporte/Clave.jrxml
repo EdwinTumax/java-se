@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Nivel" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f454b82b-3e96-4c4d-8082-689b0c582e63">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="pie" class="java.io.InputStream"/>
+	<parameter name="idClave" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fechaCreacion" class="java.lang.String"/>
+	<parameter name="grado" class="java.lang.String"/>
+	<parameter name="escuela" class="java.lang.String"/>
+	<parameter name="clave" class="java.lang.String"/>
+	<parameter name="materia" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     respuesta_clave.`numeroPregunta` AS respuesta_clave_numeroPregunta,
+     respuesta_clave.`valor` AS respuesta_clave_valor,
+     respuesta_clave.`respuesta` AS respuesta_clave_respuesta
+FROM
+     `respuesta_clave` respuesta_clave
+WHERE
+     respuesta_clave.`idClave` = $P{idClave}
+order by respuesta_clave.`numeroPregunta`]]>
+	</queryString>
+	<field name="respuesta_clave_numeroPregunta" class="java.lang.Integer"/>
+	<field name="respuesta_clave_valor" class="java.lang.Integer"/>
+	<field name="respuesta_clave_respuesta" class="java.lang.String"/>
+	<variable name="total" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[$F{respuesta_clave_valor}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="153" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="54df17cd-456f-44b4-bd85-bea6752aae4e" x="-19" y="1" width="594" height="25" backcolor="#000099"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="1ebae1e1-0691-4ce9-8908-e6b51445e1ca" x="-19" y="0" width="594" height="25" forecolor="#0000FF" backcolor="#0000CC"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="1ce88b21-9188-4efc-b99b-0d717a6db493" x="65" y="2" width="352" height="23" forecolor="#FFFFFF"/>
+				<textElement>
+					<font fontName="SansSerif" size="18"/>
+				</textElement>
+				<text><![CDATA[Centro Educativo Laboral Kinal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="479adf43-03ad-4979-87b1-989cc28351c8" x="68" y="27" width="462" height="11"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<text><![CDATA[www.kinal.org.gt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8c6d91ff-5500-4d32-8bc4-4d36e1095b1f" x="68" y="38" width="462" height="11"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<text><![CDATA[6a. Avenida 13-54, zona 7, Colonia Landívar.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bc3ace88-8eb5-4248-b16c-2302aba0a423" x="68" y="49" width="462" height="11"/>
+				<textElement>
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<text><![CDATA[PBX: (502) 2387-7600 FAX: (502) 2387-7601]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d84a9912-1cb6-4f4f-9591-c86521a762f1" x="156" y="66" width="261" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Baskerville Old Face" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INFORME CLAVE]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="8c1cb5fb-d275-4943-9086-73b19c713977" x="455" y="3" width="100" height="20" forecolor="#FFFFFF"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement uuid="8051453a-ec0d-4be6-ab82-b353bcc1afd5" x="1" y="-8" width="62" height="72"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<rectangle radius="10">
+				<reportElement uuid="3020d901-611c-4c96-a344-ba0d4dee7bfa" x="1" y="85" width="549" height="66"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="e3c7549a-4d54-4078-91ad-71d29b858652" x="99" y="94" width="42" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[CLAVE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8cb4bb64-df72-4b77-b198-039e40648151" x="26" y="127" width="115" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[GRADO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="80109767-606d-47de-b525-3f79af5b9cdd" x="22" y="110" width="119" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[FECHA DE CREACIÓN:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="ef3b7c61-6381-42e2-a796-cb00edb6cce9" x="145" y="107" width="82" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="86b9ac8c-fff3-4da8-ba1d-eae0189742be" x="144" y="122" width="82" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="45b9e117-8ad0-4f1f-9d99-08af354d2d85" x="144" y="141" width="398" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="8c24872e-1632-4976-bad8-fe9b88a753a7" x="352" y="96" width="52" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[ESCUELA:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="1b925316-f545-4c0e-9e74-d4095fbb6a71" x="406" y="107" width="136" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="8b9278a7-e566-4b45-ae49-f78b1aeb956b" x="145" y="109" width="82" height="13"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{fechaCreacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7c126e07-b5a7-4ef9-aa51-272fa466866e" x="145" y="89" width="82" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{clave}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2031617b-ab73-49d9-8f49-5ec52c7c2e10" x="404" y="93" width="136" height="13"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{escuela}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="acfea1cf-a599-4e03-a33e-40137340fcf2" x="145" y="127" width="397" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{grado}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3b730e59-ac09-4622-abe2-9aae5bcc65a5" x="352" y="114" width="52" height="13"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[MATERIA:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="722a8398-a973-4f0c-ab25-d7ba1572a584" x="406" y="126" width="136" height="1"/>
+			</line>
+			<textField>
+				<reportElement uuid="a9b41c2b-9f6e-442a-badf-36cab1097b07" x="422" y="111" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{materia}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="3d27646e-94e4-4bc0-901d-daf796f895a5" x="3" y="0" width="552" height="24" backcolor="#FFFFFF"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="890dca7f-53ec-4311-accd-e7835a812986" x="10" y="2" width="146" height="20" forecolor="#000000" backcolor="#FFFFFF"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<text><![CDATA[NÚMERO DE PREGUNTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="219021b6-82f5-41b8-9a4f-a0b51538ebf6" x="156" y="2" width="261" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<text><![CDATA[REPUESTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a713cd93-c817-44c4-9276-831e3339144a" x="417" y="2" width="135" height="20" forecolor="#000000"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="14"/>
+				</textElement>
+				<text><![CDATA[VALOR]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="400ec971-cf69-4342-9fb5-1e1831c6dc93" x="10" y="2" width="146" height="18"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{respuesta_clave_numeroPregunta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="64d62a2e-af1c-45ce-a62f-d17e97bdae7d" x="156" y="1" width="261" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{respuesta_clave_respuesta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="5df03c63-ba17-4bd1-a144-6a3b0335b333" x="417" y="0" width="138" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{respuesta_clave_valor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="e77c3339-03a5-4c9f-b533-fba18149255c" x="-19" y="0" width="594" height="16" forecolor="#0000FF" backcolor="#0000CC"/>
+			</rectangle>
+			<image onErrorType="Blank">
+				<reportElement uuid="00c308e9-1732-4d5e-a851-96d4f343ad1d" x="203" y="1" width="239" height="16"/>
+				<imageExpression><![CDATA[$P{pie}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="47e3be58-9d42-42c7-885a-557cac88ee02" x="447" y="1" width="100" height="13" forecolor="#FFFFFF"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="40">
+			<rectangle radius="10">
+				<reportElement uuid="17a592d8-6e3f-416e-abcb-3a38408a6594" x="451" y="4" width="75" height="32"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="76aead52-1d8a-4741-a40b-2fb0c5713c3e" x="461" y="4" width="55" height="32"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="86eb4c21-3c8f-46e6-a58f-63aae0e15ee1" x="312" y="12" width="135" height="18"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[VALOR DE LA PRUEBA:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="6116cf2a-26d7-4f0b-ad35-739e79f77ef6" x="1" y="0" width="554" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="73e174d1-2c4e-4fb1-a1ad-015f43a7a474" x="1" y="38" width="554" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Double"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

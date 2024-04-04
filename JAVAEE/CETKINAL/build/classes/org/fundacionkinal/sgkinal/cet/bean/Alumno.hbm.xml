@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.Alumno" table="alumno">
+    <id column="carne" name="carne">
+      <generator class="assigned"/>
+    </id>
+    <property column="idAspirante" name="idAspirante"/>
+    <property column="nombres" name="nombres"/>
+    <property column="apellidos" name="apellidos"/>
+    <property column="direccionActual" name="direccionActual"/>
+    <property column="colonia" name="colonia"/>
+    <property column="zona" name="zona"/>
+    <property column="telefono" name="telefono"/>
+    <property column="fechaNac" name="fechaNac"/>
+    <property column="edad" name="edad"/>
+    <property column="noExpediente" name="noExpediente"/>
+    <property column="codigoPersonal" name="codigoPersonal"/>
+    <property column="estado" name="estado"/>
+    <property column="becadoMineduc" name="becadoMineduc"/>
+    <property column="jornada" name="jornada"/>
+    <property column="foto" name="foto"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.ReligionCET" column="idReligion" name="religion"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.Departamento" column="idDepartamento" name="departamento"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.Municipio" column="idMunicipio" name="municipio"/>
+    <one-to-one class="org.fundacionkinal.sgkinal.cet.bean.DatosAcademicoCET" name="datosAcademico" lazy="false"/>
+    <set name="listaDeNotas" table="nota" inverse="true" fetch="select">
+        <key>
+            <column name="carne" not-null="true"/>
+        </key>
+        <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.Nota" />
+    </set>
+  </class>
+
+</hibernate-mapping>

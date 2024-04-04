@@ -1,0 +1,7 @@
+public class GestorDeCalificaciones{
+	public void setCalificacion(byte calificacion){
+		if(calificacion < 0  || calificacion >100){
+			throw new CalificacionInvalidaException();
+		}
+	}
+}

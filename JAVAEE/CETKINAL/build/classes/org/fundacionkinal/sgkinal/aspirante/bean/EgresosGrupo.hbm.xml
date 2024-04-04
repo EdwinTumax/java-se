@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.EgresosGrupo" table="egresos_grupo">
+    <id column="idAspirante" name="idAspirante">
+      <generator class="foreign">
+        <param name="property">aspirante</param>
+      </generator>
+    </id>
+    <property column="alimentacion" name="alimentacion" type="java.lang.Double"/>
+    <property column="vestuario" name="vestuario" type="java.lang.Double"/>
+    <property column="vivienda" name="vivienda" type="java.lang.Double"/>
+    <property column="transporte" name="transporte" type="java.lang.Double"/>
+    <property column="educacion" name="educacion" type="java.lang.Double"/>
+    <property column="aguaLuzTelefono" name="aguaLuzTelefono" type="java.lang.Double"/>
+    <property column="otros" name="otros" type="java.lang.Double"/>
+    <property column="totalEgresos" name="totalEgresos" type="java.lang.Double"/>
+    <one-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante" constrained="true" name="aspirante"/>
+  </class>
+</hibernate-mapping>

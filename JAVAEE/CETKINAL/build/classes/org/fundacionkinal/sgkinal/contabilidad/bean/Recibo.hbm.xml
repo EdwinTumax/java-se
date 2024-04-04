@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.Recibo" table="recibo">
+    <id column="idRecibo" name="idRecibo">
+      <generator class="assigned"/>
+    </id>
+    <property column="numeroRecibo" name="numeroRecibo"/>
+    <property column="anio" name="anio"/>
+    <property column="carne" name="carne"/>
+    <property column="fecha" name="fecha"/>
+    <property column="cargo" name="cargo"/>
+    <property column="recibiDe" name="recibiDe"/>
+    <property column="concepto" name="concepto"/>
+    <property column="monto" name="monto"/>
+    <property column="numeroBoleta" name="numeroBoleta"/>
+    <property column="efectivo" name="efectivo"/>
+    <property column="cheque" name="cheque"/>
+    <property column="banco" name="banco"/>
+  </class>
+</hibernate-mapping>

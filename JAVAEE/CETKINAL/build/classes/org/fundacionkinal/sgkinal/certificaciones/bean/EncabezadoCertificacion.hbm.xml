@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.certificaciones.bean.EncabezadoCertificacion" table="encabezadoCertificacion">
+    <id column="idEncabezado" name="idEncabezado">
+      <generator class="identity"/>
+    </id>
+    <property column="carne" name="carne"/>
+    <property column="nombre" name="nombre"/>    
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.certificaciones.bean.Carrera" column="idCarrera" lazy="false" name="carrera"/>
+    <set cascade="all" lazy="false" name="detalleEncabezado" table="detallecertificacion">
+      <key>
+        <column name="idEncabezado"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.certificaciones.bean.DetalleCertificacion"/>
+    </set>
+  </class>
+</hibernate-mapping>

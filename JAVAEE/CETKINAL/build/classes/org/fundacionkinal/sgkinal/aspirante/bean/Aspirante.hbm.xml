@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante" table="aspirante">
+    <id name="idAspirante" type="java.lang.Integer">
+      <column name="idAspirante"/>
+      <generator class="identity"/>
+    </id>
+    <property column="nombres" name="nombres" type="java.lang.String"/>
+    <property column="apellidos" name="apellidos" type="java.lang.String"/>
+    <property column="fechaNacimiento" name="fechaNacimiento" type="java.sql.Date"/>
+    <property column="codigoPersonal" name="codigoPersonal" type="java.lang.String"/>
+    <property column="tipoPago" name="tipoPago" type="java.lang.String"/>
+    <property column="jornada" name="jornada" type="java.lang.String"/>
+    <property column="direccion" name="direccion" type="java.lang.String"/>
+    <property column="residenciaActual" name="residenciaActual" type="java.lang.String"/>
+    <property column="telefono" name="telefono" type="java.lang.String"/>
+    <property column="noExpediente" name="noExpediente" type="java.lang.String"/>
+    <property column="papeleriaCompleta" name="papeleriaCompleta" type="java.lang.String"/>
+    <property column="iglesiaAsiste" name="iglesiaAsiste" type="java.lang.String"/>
+    <property column="edad" name="edad" type="java.lang.Integer"/>
+    <property column="anioAsignacion" name="anioAsignacion" type="java.lang.Integer"/>
+    <property column="resultadoExamen" name="resultadoExamen" type="java.lang.String"/>
+    <property column="exalumno" name="exalumno" type="java.lang.Boolean"/>
+    <property column="orientacion" name="orientacion" type="java.lang.Boolean"/>
+    <property column="administracion" name="administracion" type="java.lang.Boolean"/>
+    <property column="coordinacion" name="coordinacion" type="java.lang.Boolean"/>
+    <property column="observaciones" name="observaciones" type="java.lang.String"/>
+    <property column="comoSeEntero" name="comoSeEntero" type="java.lang.String"/>
+    <property column="carneRecomendado" name="carneRecomendado" type="java.lang.String"/>
+    <property column="estado" name="estado" type="java.lang.String"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.Escuela" column="idEscuela" lazy="false" name="escuela"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.Religion" column="idReligion" lazy="false" name="religion"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.FechaExamen" column="idFechaExamen" lazy="false" name="fechaExamen"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.Colegio" column="idColegio" lazy="false" name="colegio"/>
+    <one-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.DatosAcademico" lazy="false" name="datosAcademico"/>
+    <one-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.DatosPariente" lazy="false" name="datosPariente"/>
+    <one-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.DatosFinanciero" lazy="false" name="datosFinanciero"/>
+    <one-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.Asignacion" lazy="false" name="asignacion"/>
+    <one-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.SolicitudApoyoEconomico" lazy="false" name="solicitudApoyoEconomico"/>
+    <one-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.IngresosGrupo" lazy="false" name="IngresosGrupo"/>
+    <one-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.EgresosGrupo" lazy="false" name="EgresosGrupo"/>
+    <one-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.SituacionPadres" lazy="false" name="situacionPadres"/>
+    <set cascade="all" lazy="false" name="grupoFamiliar" table="grupo_familiar">
+      <key>
+        <column name="idAspirante"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.aspirante.bean.GrupoFamiliar"/>
+    </set>
+    <filter condition=":idEscuelaParametro = idEscuela and :anioAsignacionParametro = anioAsignacion" name="filtroEscuela"/>
+    <filter condition=":fechaExamenParametro = idFechaExamen" name="filtroExamen"/>
+    <filter condition=":anioAsignacionParametro = anioAsignacion" name="filtroAnio"/>
+    <filter condition=":expedienteParametro = noExpediente" name="filtroBuscarExpediente"/>
+    <filter condition=":expedienteParametro = noExpediente and :idEscuelaParametro = idEscuela and :anioAsignacionParametro = anioAsignacion" name="filtroExpediente"/>
+    <filter condition="nombres like :nombresParametro and idEscuela = :idEscuelaParametro and :anioAsignacionParametro = anioAsignacion" name="filtroNombres"/>
+    <filter condition="nombres like :nombreParametro" name="filtroNombre"/>
+    <filter condition="apellidos like :apellidosParametro and idEscuela = :idEscuelaParametro and :anioAsignacionParametro = anioAsignacion" name="filtroApellidos"/>
+    <filter condition="apellidos like :apellidoParametro" name="filtroApellido"/>
+    <filter condition="apellidos like :todosParametro" name="filtroTodos"/>
+    <filter condition=":resultadoExamenParametro = resultadoExamen and :anioAsignacionParametro = anioAsignacion" name="filtroResultado"/>
+    <filter condition=":resultadoExamenParametro = resultadoExamen and :anioAsignacionParametro = anioAsignacion and :estado = estado" name="filtroResultadoInscripcion"/>
+    <filter condition=":resultadoExamenParametro = resultadoExamen and :idEscuelaParametro = idEscuela and :anioAsignacionParametro = anioAsignacion" name="filtroResultadoExamen"/>
+    <filter condition=":fechaExamenParametro = idFechaExamen and :idEscuelaParametro = idEscuela and :anioAsignacionParametro = anioAsignacion" name="filtroFechaExamen"/>
+    <filter condition=":fechaExamenParametro = idFechaExamen and :idEscuelaParametro = idEscuela and :anioAsignacionParametro = anioAsignacion and :resultadoExamenParametro = resultadoExamen" name="filtroFechaResultadoExamen"/>
+    <filter condition=":resultadoExamenParametro = resultadoExamen" name="filtroResultadoExamenes"/>
+    <filter condition=":fechaExamenParametro = idFechaExamen and :resultadoExamenParametro = resultadoExamen" name="filtroFechaResultadoExamenes"/>
+  </class>
+  <filter-def name="filtroEscuela">
+    <filter-param name="idEscuelaParametro" type="int"/>
+    <filter-param name="anioAsignacionParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroExamen">
+    <filter-param name="fechaExamenParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroAnio">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroBuscarExpediente">
+    <filter-param name="expedienteParametro" type="string"/>
+  </filter-def>
+  <filter-def name="filtroExpediente">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+    <filter-param name="expedienteParametro" type="string"/>
+    <filter-param name="idEscuelaParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroNombres">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+    <filter-param name="nombresParametro" type="string"/>
+    <filter-param name="idEscuelaParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroApellidos">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+    <filter-param name="apellidosParametro" type="string"/>
+    <filter-param name="idEscuelaParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroResultadoExamen">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+    <filter-param name="resultadoExamenParametro" type="string"/>
+    <filter-param name="idEscuelaParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroResultado">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+    <filter-param name="resultadoExamenParametro" type="string"/>
+  </filter-def>
+  <filter-def name="filtroResultadoInscripcion">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+    <filter-param name="resultadoExamenParametro" type="string"/>
+    <filter-param name="estado" type="string"/>
+  </filter-def>
+  <filter-def name="filtroFechaExamen">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+    <filter-param name="fechaExamenParametro" type="int"/>
+    <filter-param name="idEscuelaParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroFechaResultadoExamen">
+    <filter-param name="anioAsignacionParametro" type="int"/>
+    <filter-param name="resultadoExamenParametro" type="string"/>
+    <filter-param name="idEscuelaParametro" type="int"/>
+    <filter-param name="fechaExamenParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroFechaResultadoExamenes">
+    <filter-param name="resultadoExamenParametro" type="string"/>
+    <filter-param name="fechaExamenParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroResultadoExamenes">
+    <filter-param name="resultadoExamenParametro" type="string"/>
+  </filter-def>
+  <filter-def name="filtroNombre">
+    <filter-param name="nombreParametro" type="string"/>
+  </filter-def>
+  <filter-def name="filtroApellido">
+    <filter-param name="apellidoParametro" type="string"/>
+  </filter-def>
+  <filter-def name="filtroTodos">
+    <filter-param name="todosParametro" type="string"/>
+  </filter-def>
+</hibernate-mapping>

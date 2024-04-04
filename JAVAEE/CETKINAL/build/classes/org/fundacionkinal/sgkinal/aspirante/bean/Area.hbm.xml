@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.Area" table="area">
+    <id column="idArea" name="idArea">
+      <generator class="assigned"/>
+    </id>
+    <property column="area" name="area"/>
+    <set lazy="false" name="grupoCT" table="grupo_ct">
+      <key>
+        <column name="idArea"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.aspirante.bean.GrupoCT"/>
+    </set>
+  </class>
+</hibernate-mapping>

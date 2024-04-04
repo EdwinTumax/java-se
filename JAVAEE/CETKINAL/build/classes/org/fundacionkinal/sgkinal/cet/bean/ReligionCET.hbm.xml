@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.ReligionCET" table="religion">
+    <id column="idReligion" name="idReligion">
+      <generator class="assigned"/>
+    </id>
+    <property column="religion" name="religion" type="java.lang.String"/>
+  </class>
+</hibernate-mapping>

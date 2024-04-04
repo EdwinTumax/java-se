@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.DetalleActividad" table="detalle_actividad">
+    <id column="idActividad" name="idActividad">
+      <generator class="identity"/>
+    </id>
+    <many-to-one column="idCab" name="cabNota"/>
+    <property column="actividad" name="actividad"/>
+    <property column="valor" name="valor"/>
+    <property column="fechaCreacion" name="fechaCreacion"/>
+    <property column="fechaEntrega" name="fechaEntrega"/>
+    <property column="fechaPostergacion" name="fechaPostergacion"/>
+    <property column="estado" name="estado"/>
+    <many-to-one column="idCategoria" name="categoriaActividad"/>
+  </class>
+</hibernate-mapping>

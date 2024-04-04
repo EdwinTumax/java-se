@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Aspirantes" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8e9c85b2-ceef-415c-9b04-a482601cbf8a">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idFecha" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ExamenFecha" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="icono" class="java.io.InputStream"/>
+	<parameter name="idEscuela" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nivel" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     aspirante.`nombres` AS aspirante_nombres,
+     aspirante.`apellidos` AS aspirante_apellidos,
+     aspirante.`noExpediente` AS aspirante_no_expediente,
+     aspirante.`papeleriaCompleta` AS aspirante_papeleria_completa,
+     aspirante.`resultadoExamen` AS aspirante_resultado_examen,
+     carrera.nombre as carrera,
+     datos_academico.deseoCarrera as segundaOpcion,
+     resultado_clave.nota
+FROM
+     `aspirante` aspirante
+INNER JOIN datos_academico
+ON aspirante.idAspirante = datos_academico.idAspirante
+INNER JOIN carrera
+ON datos_academico.idCarrera = carrera.idCarrera
+INNER JOIN resultado_clave
+ON aspirante.noExpediente = resultado_clave.noExpediente WHERE aspirante.idFechaExamen = $P{idFecha} and aspirante.idEscuela = $P{idEscuela} ORDER BY aspirante.`apellidos`]]>
+	</queryString>
+	<field name="aspirante_nombres" class="java.lang.String"/>
+	<field name="aspirante_apellidos" class="java.lang.String"/>
+	<field name="aspirante_no_expediente" class="java.lang.String"/>
+	<field name="aspirante_papeleria_completa" class="java.lang.String"/>
+	<field name="aspirante_resultado_examen" class="java.lang.String"/>
+	<field name="carrera" class="java.lang.String"/>
+	<field name="segundaOpcion" class="java.lang.String"/>
+	<field name="nota" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ec12dad3-1fd8-4aa2-9473-9f2e66333b49" x="239" y="42" width="261" height="31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Baskerville Old Face" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resultado Aspirantes]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="13ecb911-2c47-49c7-8845-21d6cdf36b63" x="-21" y="18" width="793" height="20" backcolor="#000066"/>
+			</rectangle>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement uuid="63b9ec15-76e9-43c2-85ae-805b92e46f17" x="0" y="0" width="63" height="73"/>
+				<imageExpression><![CDATA[$P{icono}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="9ce35bd6-d435-4028-a034-50a03d105d47" x="226" y="74" width="287" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Baskerville Old Face" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ExamenFecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6176ae9b-c121-4646-b8df-9006d256df97" x="226" y="90" width="287" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Baskerville Old Face" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nivel}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="ae01ede2-bbb9-44dd-a437-fd54ccf9a6e4" x="0" y="1" width="753" height="29"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="c5888526-bf46-4fac-829f-bc6e6bf499a7" x="546" y="0" width="69" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expediente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6e49b39d-0c33-4c58-833e-f53e3dbd37d3" x="617" y="1" width="77" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Papeleria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="39fe64c5-08de-4b07-bb58-226aa3a593d1" x="693" y="0" width="54" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="55dc8995-ff88-40ac-b2cd-795698879a31" x="201" y="1" width="122" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d5862435-c8b3-46b3-9d73-d2c88ba5f921" x="60" y="2" width="138" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7888a18e-7a70-4d47-bb9a-4ae0d2e05bb8" x="13" y="2" width="30" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="40f045a2-74b8-4fa0-99a7-a3432596ecd9" x="331" y="1" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8f97cfb2-278d-4244-be28-c6e31b03f795" x="438" y="2" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Segunda opción]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement uuid="79f898a6-62d9-4161-b33b-151f0ffbc4f8" x="60" y="0" width="138" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspirante_apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="6bc41390-5127-4773-9844-f8c7fb990394" x="546" y="0" width="69" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspirante_no_expediente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a9011865-761c-40ba-834e-b209c78ebcce" x="617" y="0" width="77" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspirante_papeleria_completa}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="c96be38d-5a67-4546-86a1-5451d6c27aaa" x="0" y="20" width="752" height="1" backcolor="#0A0A74"/>
+				<graphicElement>
+					<pen lineWidth="2.25" lineStyle="Double" lineColor="#000099"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="4b88e694-da9e-4306-a4be-8c653c860349" x="201" y="1" width="122" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspirante_nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a4268f86-8b52-467b-99fe-dfdfc1f21196" x="6" y="0" width="40" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8ae43aeb-b20b-4f60-aedc-904b281b916c" x="694" y="0" width="53" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{nota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="dcc16e6d-a81b-4ec0-8e86-d5632717d0ee" x="331" y="1" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="552c41eb-6a4d-4028-8806-35621cbb9014" x="438" y="2" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{segundaOpcion}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="57860a68-f3de-42b9-89e1-aa514ee4b73f" x="-21" y="1" width="793" height="20" backcolor="#000066"/>
+			</rectangle>
+		</band>
+	</pageFooter>
+</jasperReport>

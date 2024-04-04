@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.DatosPariente" table="datos_pariente">
+    <id column="idAspirante" name="idAspirante">
+      <generator class="foreign">
+        <param name="property">aspirante</param>
+      </generator>
+    </id>
+    <property column="nombrePadre" name="nombrePadre" type="java.lang.String"/>
+    <property column="direccionPadre" name="direccionPadre" type="java.lang.String"/>
+    <property column="telefonoPadre" name="telefonoPadre" type="java.lang.String"/>
+    <property column="ocupacionPadre" name="ocupacionPadre" type="java.lang.String"/>
+    <property column="lugarTrabajoPadre" name="lugarTrabajoPadre" type="java.lang.String"/>
+    <property column="direccionTrabajoPadre" name="direccionTrabajoPadre" type="java.lang.String"/>
+    <property column="nombreMadre" name="nombreMadre" type="java.lang.String"/>
+    <property column="direccionMadre" name="direccionMadre" type="java.lang.String"/>
+    <property column="telefonoMadre" name="telefonoMadre" type="java.lang.String"/>
+    <property column="ocupacionMadre" name="ocupacionMadre" type="java.lang.String"/>
+    <property column="lugarTrabajoMadre" name="lugarTrabajoMadre" type="java.lang.String"/>
+    <property column="direccionTrabajoMadre" name="direccionTrabajoMadre" type="java.lang.String"/>
+    <property column="estadoActual" name="estadoActual" type="java.lang.String"/>
+    <property column="nombreEncargado" name="nombreEncargado" type="java.lang.String"/>
+    <property column="direccionEncargado" name="direccionEncargado" type="java.lang.String"/>
+    <property column="telefonoEncargado" name="telefonoEncargado" type="java.lang.String"/>
+    <property column="telefonoEmergencia" name="telefonoEmergencia" type="java.lang.String"/>
+    <property column="observaciones" name="observaciones" type="java.lang.String"/>
+    <one-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante" constrained="true" name="aspirante"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Religion" column="idReligionMadre" name="religionMadre"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Religion" column="idReligionPadre" name="religionPadre"/>
+  </class>
+</hibernate-mapping>

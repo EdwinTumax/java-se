@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TEORIA" language="groovy" pageWidth="572" pageHeight="752" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="86823966-f6d1-44d6-9651-1201f76db788">
+	<property name="ireport.zoom" value="4.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="carne" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select sum(dbkinalcontabilidad.cxc_cet.debe) as '30-60' from dbkinalcontabilidad.cxc_cet where (datediff(curdate(),dbkinalcontabilidad.cxc_cet.fechaAplica)) > 30 and datediff(curdate(),dbkinalcontabilidad.cxc_cet.fechaAplica) <= 60 and dbkinalcontabilidad.cxc_cet.carne = $P{carne}]]>
+	</queryString>
+	<field name="30-60" class="java.lang.Double"/>
+	<variable name="0-30" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{30-60}]]></variableExpression>
+	</variable>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="f0c63a9f-5f6c-406c-a1e6-71dec5ab9e57" style="table" x="0" y="0" width="43" height="12"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{30-60}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

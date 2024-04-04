@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.Resultado" table="resultado">
+    <composite-id name="idNota">
+      <key-property column="carne" name="carne"/>
+      <key-property column="idEnvio" name="idEnvio"/>
+    </composite-id>
+    <property column="nota" name="nota"/>
+    <many-to-one column="idAsignatura" name="asignatura"/>
+    <property column="status" name="status"/>
+  </class>
+</hibernate-mapping>

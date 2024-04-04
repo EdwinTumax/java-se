@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.ExamenClave" table="examen_clave">
+    <id column="idClave" name="idClave" type="java.lang.Integer">
+      <generator class="identity"/>
+    </id>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.Escuela" column="idEscuela" lazy="false" name="escuela"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.FechaExamen" column="idFechaExamen" lazy="false" name="fechaExamen"/>
+    <property column="idUsuario" name="idUsuario"/>
+    <property column="fecha" name="fecha"/>
+    <property column="materia" name="materia"/>
+    <property column="grado" name="grado"/>
+    <set cascade="all" inverse="true" lazy="false" name="respuestaClave" table="respuesta_clave">
+      <key on-delete="cascade">
+        <column name="idClave" not-null="false"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.aspirante.bean.RespuestaClave"/>
+    </set>
+    <set cascade="all" lazy="false" name="resultadoClave" table="resultado_clave">
+      <key>
+        <column name="idClave"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.aspirante.bean.ResultadoClave"/>
+    </set>
+  </class>
+</hibernate-mapping>

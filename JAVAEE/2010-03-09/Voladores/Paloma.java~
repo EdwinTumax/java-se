@@ -1,0 +1,5 @@
+public class Paloma implements Volador{
+	public void Volador(){
+	 System.out.println("Esta volando la paloma");
+	}
+}

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.TalonarioAlumno" table="talonario_alumno">
+    <id column="idTalonario" name="idTalonario">
+      <generator class="assigned"/>
+    </id>
+    <property column="carne" name="carne"/>
+    <property column="fecha" name="fecha"/>
+    <property column="cicloEscolar" name="cicloEscolar"/>
+  </class>
+</hibernate-mapping>

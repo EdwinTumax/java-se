@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.BitacoraNota" table="bitacora_nota">
+    <id column="idTransaccion" name="idTransaccion" type="java.lang.Integer">
+      <generator class="identity"/>
+    </id>
+    <property column="idUsuario" name="idUsuario" type="java.lang.Integer"/>
+    <property column="idAsignatura" name="idAsignatura" type="java.lang.String"/>
+    <property column="idEnvio" name="idEnvio" type="java.lang.Integer"/>
+    <property column="valor" name="valor" type="java.lang.Long"/>
+    <property column="tipo" name="tipo" type="java.lang.String"/>
+    <property column="fecha" name="fecha" type="java.util.Date"/>
+    <property column="mac" name="mac" type="java.lang.String"/>
+    <property column="usuarioSistema" name="usuarioSistema" type="java.lang.String"/>
+    <property column="nombrePC" name="nombrePC" type="java.lang.String"/>
+    <property column="sistemaOperativo" name="sistemaOperativo" type="java.lang.String"/>
+  </class>
+</hibernate-mapping>

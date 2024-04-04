@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.GrupoCT" table="grupo_ct">
+    <id column="idGrupoCT" name="idGrupoCT">
+      <generator class="assigned"/>
+    </id>
+    <property column="grupo" name="grupo"/>
+    <property column="idArea" name="idArea"/>
+  </class>
+</hibernate-mapping>

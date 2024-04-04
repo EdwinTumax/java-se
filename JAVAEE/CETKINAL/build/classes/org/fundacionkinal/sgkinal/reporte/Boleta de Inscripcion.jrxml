@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Boleta de Inscripcion" language="groovy" pageWidth="611" pageHeight="396" orientation="Landscape" columnWidth="521" leftMargin="45" rightMargin="45" topMargin="26" bottomMargin="17" uuid="a0fd3a39-26fa-4f7c-b6ad-b9b7aef9ffec">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idAspirante" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="icono" class="java.io.InputStream">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fondo" class="java.io.InputStream"/>
+	<parameter name="cicloEscolar" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+     aspirante.`idaspirante`,
+     aspirante.`nombres`,
+     aspirante.`apellidos`,
+     grupo_ct.`grupo`,
+     datos_financiero.`inscripcion` + datos_financiero.`uniforme` as inscripcion,
+     datos_financiero.cuota*datos_financiero.nopagosconvenio AS aporteAnual,
+     datos_financiero.`nopagosficha`, round((datos_financiero.cuota*datos_financiero.nopagosconvenio)/datos_financiero.nopagosficha,2) as cuota,
+     datos_financiero.noboletainscripcion,
+     datos_financiero.noboletauniforme,
+     aspirante.noexpediente,
+     if(aspirante.idEscuela = 3,"Educación Básica",if(datos_academico.bachillerato,concat('Bachiller en ',carrera.nombre),concat('Perito en ',carrera.nombre))) as carrera
+FROM
+     aspirante INNER JOIN  datos_academico ON aspirante.`idaspirante` = datos_academico.`idaspirante` INNER JOIN datos_financiero ON aspirante.`idaspirante` = datos_financiero.`idaspirante` INNER JOIN grupo_ct ON datos_academico.`idGrupoCT` = grupo_ct.`idGrupoCT` INNER JOIN carrera ON datos_academico.`idcarrera` = carrera.`idcarrera` WHERE aspirante.idaspirante = $P{idAspirante}]]>
+	</queryString>
+	<field name="idaspirante" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="grupo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inscripcion" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="aporteAnual" class="java.math.BigDecimal"/>
+	<field name="nopagosficha" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cuota" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="noboletainscripcion" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="noboletauniforme" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="noexpediente" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="carrera" class="java.lang.String"/>
+	<background>
+		<band height="353">
+			<image hAlign="Center" vAlign="Middle">
+				<reportElement uuid="5536232e-b10f-4829-98dd-d6a97d21adb9" x="25" y="17" width="476" height="325"/>
+				<imageExpression><![CDATA[$P{fondo}]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<detail>
+		<band height="353">
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement uuid="072a608d-2cd7-4226-9ca1-12c7d5ebf9ad" x="467" y="0" width="54" height="52"/>
+				<imageExpression><![CDATA[$P{icono}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="83ff7b6e-da4f-45f7-87d7-333cf0984343" x="0" y="20" width="466" height="31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CENTRO EDUCATIVO TÉCNICO LABORAL KINAL]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="6fd025a8-3516-4779-80c2-079a4b1f7ce8" x="0" y="52" width="521" height="20" backcolor="#000066"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="53e3bbc8-0250-4047-910a-c89aa985820d" x="6" y="74" width="440" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FICHA DE INSCRIPCIÓN - CICLO ESCOLAR      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fec1c6c4-2258-4fce-b51d-592ce18c4e9c" x="164" y="95" width="169" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CARRERAS –TÉCNICAS      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="9f728a79-e07f-4457-b206-9dec534ad1a4" x="1" y="116" width="40" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carne:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a85c588e-f501-42d6-9fdc-84aa8be9d6d1" x="167" y="117" width="103" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Código de Grupo:      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="62add925-6b4e-447d-bd85-71315a114d4f" x="1" y="147" width="62" height="25"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="3ce320eb-7716-425e-9256-99139312e280" x="250" y="148" width="58" height="25"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fdb59a8a-dcbb-4dfe-bdb4-2e3708d99366" x="1" y="172" width="91" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Inscripcion: Q      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2a42286f-51e6-454f-a5d8-6da2d7aa7c33" x="135" y="172" width="100" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Aporte anual: Q      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="0cb26a12-9efd-4ce5-b372-2bc150c613e8" x="280" y="172" width="79" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No Aportes:      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f38be2bb-60a0-4171-a77c-4a3287a73498" x="377" y="172" width="101" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mensualidad: Q]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="af27f4a2-44b3-40d2-9c4e-6bae81ef57b1" x="1" y="201" width="135" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No boleta Inscripción:      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="12d7402e-3634-4ea1-ab57-89c5e6f206fc" x="239" y="201" width="124" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. Boleta Suéter:      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2c0bd367-8ad2-413b-83a5-0bb9961431e2" x="1" y="229" width="135" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de inscripción:     ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="582ca6ca-98c3-410b-9fe9-e0cb3c99d1b9" x="239" y="231" width="109" height="29"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Talla Suéter:       ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="61ba0fa6-d6e3-4ba8-9d39-875ed74b69a3" x="1" y="259" width="62" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Exp. No. :      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6b77ccfe-2b2f-4f7b-9256-f73dccc3dcab" x="164" y="260" width="52" height="17"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Carrera:      ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5cb1baa3-8173-4dd8-a715-ba2857104a68" x="314" y="336" width="152" height="17"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sello y firma de cajero]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="e237f46d-05da-4685-896e-9631480bfeaf" x="1" y="144" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="8dfdbe34-09e5-4117-942d-e02d5575070d" x="1" y="172" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="c2afc524-7ca9-4b42-a3b9-c12e8d56ef7f" x="1" y="228" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="f6ea3bf9-00b2-47f1-8e9f-6ef6e29c178e" x="1" y="257" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="0b55e08d-84cb-49b1-a099-234fe54fdcc2" x="0" y="277" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="01f81207-59f8-4555-8989-84f7c15e4388" x="264" y="335" width="256" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement uuid="c588cc92-6cd3-4b80-9c0b-2765b876f137" x="1" y="201" width="520" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.75" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="c1256565-424d-489c-90c7-3635982b492a" x="314" y="122" width="111" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{grupo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d226e7fb-d05f-42b8-a4eb-b9bf04792570" x="61" y="154" width="178" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c3e568fc-c961-4304-b243-a089220f1887" x="314" y="153" width="197" height="16"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1e41da35-8829-4c42-bbf9-1ae35fe0b06d" x="90" y="181" width="45" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{inscripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c94e1775-5c35-4f63-abe8-20943d6f695c" x="236" y="180" width="39" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{aporteAnual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a2df33e8-a29b-48b4-a0db-05065aeb5cf9" x="355" y="180" width="16" height="19"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{nopagosficha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a53f845c-5c78-4f68-b325-26b2acf18a9d" x="475" y="180" width="42" height="17"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{cuota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="30c2aa15-b955-4f63-9fec-47a7ff0a1592" x="151" y="209" width="65" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{noboletainscripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d83622df-fc2f-4e97-8c32-863abe3e2342" x="366" y="209" width="100" height="14"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{noboletauniforme}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a2419ccd-1fc8-46e6-bd81-8c7cbbc8f195" x="58" y="260" width="93" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noexpediente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="0ade33df-c2a6-42e5-9e7c-b91092438a27" x="227" y="260" width="250" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{carrera}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement uuid="279a848a-f71b-4f5f-98aa-69a44c9312c3" x="366" y="76" width="100" height="19"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cicloEscolar}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

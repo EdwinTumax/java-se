@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BoletaNotas" language="groovy" pageWidth="396" pageHeight="612" columnWidth="356" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="110f53c1-04b4-4216-9ff0-3ccfc770a1e1">
+	<property name="ireport.zoom" value="1.3636363636363658"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset 1" uuid="75714c28-cab2-4847-a7f3-014914c9b05d"/>
+	<subDataset name="dataset1" uuid="bb482f3b-1c31-4387-8dd8-a21306b54b54"/>
+	<subDataset name="Table Dataset 2" uuid="c5d9bab5-2fc6-490c-9b0e-10ca975e3574"/>
+	<parameter name="carne" class="java.lang.String"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="grupoCT" class="java.lang.String"/>
+	<parameter name="jornada" class="java.lang.String"/>
+	<parameter name="nivel" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["."]]></defaultValueExpression>
+	</parameter>
+	<parameter name="icono" class="java.io.InputStream"/>
+	<parameter name="valor" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT asignatura.asignatura,
+ROUND(( ifnull(if(bim1>ifnull(r1,0),bim1,r1),0) + ifnull(if(bim2>ifnull(r2,0),bim2,r2),0) + ifnull(if(bim3>ifnull(r3,0),bim3,r3),0) + ifnull(if(bim4>ifnull(r4,0),bim4,r4),0) + ifnull(if(bim5>ifnull(r5,0),bim5,r5),0) + ifnull(final,0)) /
+	(if( ifnull(if(ifnull(bim1,0) > ifnull(r1,0),bim1,r1),0) > 0,1,0) + if( ifnull(if(ifnull(bim2,0) > ifnull(r2,0),bim2,r2),0) > 0,1,0) + if( ifnull(if(ifnull(bim3,0) > ifnull(r3,0),bim3,r3),0) > 0,1,0) + if( ifnull(if(ifnull(bim4,0) > ifnull(r4,0),bim4,r4),0) > 0,1,0) + if( ifnull(if(ifnull(bim5,0) > ifnull(r5,0),bim5,r5),0) > 0,1,0) + if( ifnull(final,0) > 0,1,0)),0) AS Promedio, round(nota.2R,0) as recuperacion, if(nota.2R >= $P{valor},'APROBADO','NO APROBADO') AS Resultado
+FROM
+    `nota`
+    INNER JOIN `asignatura`
+        ON (`nota`.`idAsignatura` = `asignatura`.`idAsignatura`)
+        WHERE nota.carne = $P{carne} and asignatura.idAsignatura <> 'VL' and ROUND(( ifnull(if(bim1>ifnull(r1,0),bim1,r1),0) + ifnull(if(bim2>ifnull(r2,0),bim2,r2),0) + ifnull(if(bim3>ifnull(r3,0),bim3,r3),0) + ifnull(if(bim4>ifnull(r4,0),bim4,r4),0) + ifnull(if(bim5>ifnull(r5,0),bim5,r5),0) + ifnull(final,0)) /
+	(if( ifnull(if(ifnull(bim1,0) > ifnull(r1,0),bim1,r1),0) > 0,1,0) + if( ifnull(if(ifnull(bim2,0) > ifnull(r2,0),bim2,r2),0) > 0,1,0) + if( ifnull(if(ifnull(bim3,0) > ifnull(r3,0),bim3,r3),0) > 0,1,0) + if( ifnull(if(ifnull(bim4,0) > ifnull(r4,0),bim4,r4),0) > 0,1,0) + if( ifnull(if(ifnull(bim5,0) > ifnull(r5,0),bim5,r5),0) > 0,1,0) + if( ifnull(final,0) > 0,1,0)),0) < $P{valor} and round(nota.1R,0) < $P{valor};]]>
+	</queryString>
+	<field name="asignatura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Promedio" class="java.math.BigDecimal"/>
+	<field name="recuperacion" class="java.math.BigDecimal"/>
+	<field name="Resultado" class="java.lang.String"/>
+	<variable name="recuperadas" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[new Integer($F{recuperacion}.doubleValue() >= $P{valor} ? 1 : 0)]]></variableExpression>
+	</variable>
+	<variable name="reprobadas" class="java.lang.Integer" calculation="Sum">
+		<variableExpression><![CDATA[new Integer($F{recuperacion}.doubleValue() < $P{valor} ? 1 : 0)]]></variableExpression>
+	</variable>
+	<pageHeader>
+		<band height="141" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="04ce25fe-703a-4407-b7d1-6c67b7492e99" x="0" y="75" width="51" height="13"/>
+				<textElement/>
+				<text><![CDATA[Nombre:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ad39327d-1822-4da2-8ccc-13d214331d4d" x="250" y="75" width="45" height="13"/>
+				<textElement/>
+				<text><![CDATA[Carné:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="41777f93-6def-4281-9ae7-efe34bd2d29d" stretchType="RelativeToBandHeight" x="51" y="75" width="191" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="117b05e7-33cb-4270-8486-ada683d061c5" x="295" y="75" width="61" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{carne}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="6e54c373-238e-4d88-837a-b2935d091d0b" x="68" y="-1" width="50" height="19"/>
+				<textElement>
+					<font fontName="Tahoma" size="15" isBold="true"/>
+				</textElement>
+				<text><![CDATA[KINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5f479257-5ea9-4c09-bfb3-79e483f13adc" x="68" y="18" width="166" height="39"/>
+				<textElement>
+					<font fontName="Tahoma"/>
+				</textElement>
+				<text><![CDATA[Centro Educativo Técnico Laboral 6av. 13-54 Zona 7 Colonia Landivar Teléfono: 2387-7600]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a537111c-7108-41d9-a9b7-2a44c6f3856a" positionType="Float" stretchType="RelativeToBandHeight" x="68" y="57" width="100" height="17"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[www.kinal.org.gt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2ba2e4a4-7cf1-4ab1-85f2-978b4dd1e058" x="0" y="93" width="92" height="13"/>
+				<textElement/>
+				<text><![CDATA[Grupo Académico:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="f571aec5-8dd0-4b17-b640-70094731021b" x="103" y="93" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{grupoCT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a629c230-75f3-4323-b91b-83016812acda" x="250" y="93" width="45" height="13"/>
+				<textElement/>
+				<text><![CDATA[Jornada:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="b36cbeb1-783e-4507-9648-a1a54b8cd7de" x="295" y="93" width="61" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{jornada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d1aa7537-101e-4f8e-89cb-f50e8585fbf3" style="table" x="0" y="127" width="355" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nivel}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="160e1b7e-f041-45eb-91bd-dd0db25f89f8" x="7" y="1" width="54" height="54"/>
+				<imageExpression><![CDATA[$P{icono}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="be66c3d0-9ec2-43b9-a92a-18fdea0a510f" style="table" x="0" y="0" width="115" height="36"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASIGNATURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ffde1967-7056-4445-8477-372eaa8de83a" style="table" x="115" y="0" width="79" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[NOTAL FINAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a66c7fe9-dffc-471a-9bce-736395f9347a" style="table" x="194" y="0" width="83" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[NOTA RECUPERACION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="30e9f711-b8eb-49ed-862a-b7aab28cacec" style="table" x="277" y="0" width="78" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<text><![CDATA[RESULTADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="ac6fbdab-5800-4068-902a-ca88e56422f3" x="0" y="0" width="115" height="20"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1c438eab-037f-4f94-a71d-ed2809fdef95" x="15" y="-1" width="100" height="21"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asignatura}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement uuid="1fdce882-9ab0-4da4-b759-3be87a72e814" x="115" y="0" width="79" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="def149ea-8174-4ce8-be71-3cf76bcb31ec" x="194" y="0" width="83" height="20"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="c90e9178-39e1-4521-b216-e78f4ab7ac2c" x="277" y="0" width="78" height="20"/>
+			</rectangle>
+			<textField>
+				<reportElement uuid="3d736bae-55d9-4264-a951-6cb0d0e6212c" x="115" y="0" width="79" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{Promedio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="71fb264a-c08f-4371-842a-4505c12a572b" x="0" y="-1" width="15" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT} + "."]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="1d527e1f-19b9-493c-b69f-7673ca4128ab" x="195" y="0" width="82" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{recuperacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="a8b751d4-9500-4cde-bb58-81757a92901e" x="277" y="0" width="78" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Resultado}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="32">
+			<staticText>
+				<reportElement uuid="5f8dd9d0-93e2-406b-a0e3-7143d6a77854" style="table" x="0" y="0" width="115" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASES APROBADAS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c3cb2a06-21d4-4e6e-869d-3f522b875417" style="table" x="0" y="16" width="115" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="6" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLASES NO APROBADAS]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="cdc6ae5d-f220-4395-9878-73c7bc29c18d" x="115" y="0" width="241" height="16"/>
+			</rectangle>
+			<rectangle>
+				<reportElement uuid="904ea76e-fab8-4746-96f7-26172a916ea6" x="115" y="16" width="241" height="16"/>
+			</rectangle>
+			<textField pattern="">
+				<reportElement uuid="2821e677-92df-45b2-939a-237074ffe677" x="115" y="0" width="240" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{recuperadas}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c0036037-b48c-413d-871e-72130ad8cadd" x="115" y="16" width="241" height="16"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$V{reprobadas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.CuentasXCobrar">
+    <id column="carne" name="carne">
+        <generator class="assigned"/>
+    </id>
+    <property column="apellidos" name="apellidos"/>
+    <property column="nombres" name="nombres"/>
+    <property column="carrera" name="carrera"/>
+    <property column="ct" name="ct"/>
+    <property column="pe" name="pe"/>
+    <property column="ba" name="ba"/>
+    <property column="0-30" name="ceroTreinta"/>
+    <property column="30-60" name="treintaSesenta"/>
+    <property column="60-90" name="sesentaNoventa"/>
+    <property column="90+" name="noventaMas"/>                             
+  </class>  
+  <sql-query name="sp_ReporteCuentasXCobrar" callable="true">
+    <return alias="CuentasXCobrar" class="org.fundacionkinal.sgkinal.contabilidad.bean.CuentasXCobrar">
+        <return-property name="carne" column="carne"/>
+        <return-property name="apellidos" column="apellidos"/>
+        <return-property name="nombres" column="nombres"/>
+        <return-property name="carrera" column="carrera"/>
+        <return-property name="ct" column="ct"/>
+        <return-property name="pe" column="pe"/>
+        <return-property name="ba" column="ba"/>
+        <return-property name="ceroTreinta" column="0-30"/>
+        <return-property name="treintaSesenta" column="30-60"/>
+        <return-property name="sesentaNoventa" column="60-90"/>
+        <return-property name="noventaMas" column="90+"/>
+    </return>
+    {call sp_ReporteCuentasXCobrar()}
+  </sql-query>
+</hibernate-mapping>

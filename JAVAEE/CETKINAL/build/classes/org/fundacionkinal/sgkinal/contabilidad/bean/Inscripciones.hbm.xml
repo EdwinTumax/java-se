@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.Inscripciones" table="inscripciones">
+    <id column="idInscripcion" name="idInscripcion">
+      <generator class="identity"/>
+    </id>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.contabilidad.bean.AlumnoInscripcion" column="carne" lazy="false" name="alumnoInscripcion"/>
+    <property column="anio" name="anio" type="java.lang.Integer"/>
+    <!--<many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.contabilidad.bean.GrupoCT" column="idGrupoCT" lazy="false" name="grupoCT"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.contabilidad.bean.GrupoBA" column="idGrupoBA" lazy="false" name="grupoBA"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.contabilidad.bean.GrupoPE" column="idGrupoPE" lazy="false" name="grupoPE"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.contabilidad.bean.Carrera" column="idCarrera" lazy="false" name="carrera"/>  -->
+    <many-to-one class="org.fundacionkinal.sgkinal.contabilidad.bean.GrupoCT" column="idGrupoCT" name="grupoCT"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.contabilidad.bean.GrupoBA" column="idGrupoBA" name="grupoBA"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.contabilidad.bean.GrupoPE" column="idGrupoPE" name="grupoPE"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.contabilidad.bean.Carrera" column="idCarrera" name="carrera"/>
+    <property column="observaciones" name="observaciones" type="java.lang.String"/>
+    <property column="estado" name="estado" type="java.lang.String"/>
+  </class>
+</hibernate-mapping>

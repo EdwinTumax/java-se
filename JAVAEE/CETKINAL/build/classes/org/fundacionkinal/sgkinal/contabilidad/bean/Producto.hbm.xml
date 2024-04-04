@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.Producto" table="producto">
+    <id column="idProducto" name="idProducto">
+      <generator class="identity"/>
+    </id>
+    <property column="descripcion" name="descripcion"/>
+    <property column="precioPublico" name="precioPublico"/>
+    <property column="precioCosto" name="precioCosto"/>
+    <property column="existencia" name="existencia"/>
+    <property column="stockMinimo" name="stockMinimo"/>
+    <property column="stockMaximo" name="stockMaximo"/>
+    <property column="manejaInventario" name="manejaInventario"/>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.CxcCet" table="cxc_cet">
+    <composite-id name="llaveCXC">
+      <key-property column="cargo" name="cargo"/>
+      <key-property column="anio" name="anio"/>
+      <key-property column="carne" name="carne"/>
+    </composite-id>
+    <!-- <id column="cargo" name="idCargo">
+      <generator class="assigned"/>
+    </id> -->
+    <!--<property column="anio" name="anio"/>
+    <property column="carne" name="carne"/>-->
+    <property column="descripcion" name="descripcion"/>
+    <property column="fechaCargo" name="fechaCargo"/>
+    <property column="fechaAplica" name="fechaAplica"/>
+    <property column="monto" name="monto"/>
+    <property column="debe" name="debe"/>
+    <property column="mora" name="mora"/>
+    <property column="descuento" name="descuento"/>
+    <property column="numeroBoleta" name="numeroBoleta"/>
+    <property column="estado" name="estado"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.contabilidad.bean.Cargo" column="idCargo" lazy="false" name="cargo"/>
+    <!--<filter name="filtroCargo" condition=":cargoParam = idCargo"></filter>  -->
+  </class>
+  <!--<filter-def name="filtroCargo">  
+        <filter-param name="cargoParam" type="int"/>  
+  </filter-def>  -->
+</hibernate-mapping>

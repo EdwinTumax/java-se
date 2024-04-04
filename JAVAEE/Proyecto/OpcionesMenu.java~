@@ -1,0 +1,20 @@
+package org.edwintumax.agenda;
+public class OpcionesMenu extends Menu{
+ private int valorOpcion;
+ private String nombreOpcion;
+ public OpcionesMenu(String nombreMenu){
+  super(nombreMenu);
+ }
+ public void setOption(String nombreOpcion){
+  this.nombreOpcion = nombreOpcion;
+ }
+ public String getOpcion(){
+  return nombreOpcion;
+ }
+ public void setValorOpcion(int valor){
+  this.valorOpcion = valor;
+ }
+ public int getValorOpcion(){
+  return valorOpcion;
+ }
+}

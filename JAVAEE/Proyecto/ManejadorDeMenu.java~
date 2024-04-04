@@ -1,0 +1,17 @@
+package org.edwintumax.agenda;
+import java.util.ArrayList;
+public class ManejadorDeMenu{
+ private ArrayList<Menu> listaMenu;
+ public ManejadorDeMenu(){
+  listaMenu = new ArrayList<Menu>();
+ }
+ public void agregarOpcion(Menu nuevaOpcion){
+  listaMenu.add(nuevaOpcion);
+ }
+ public void eliminarOpcion(int indice){
+  listaMenu.remove(indice);
+ }
+ public int buscarOpcion(Menu buscarElemento){
+  return listaMenu.lastIndexOf(buscarElemento);
+ } 
+}

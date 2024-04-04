@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.moodle.bean.MdlCourse" table="mdl_course">
+    <id column="id" name="idCourse">
+      <generator class="identity"/>
+    </id>
+    <property column="fullname" name="nombre" type="string"/>
+    <property column="idnumber" name="idNumber" type="string"/>
+    <property column="category" name="categoria" type="integer"/>
+  </class>
+</hibernate-mapping>

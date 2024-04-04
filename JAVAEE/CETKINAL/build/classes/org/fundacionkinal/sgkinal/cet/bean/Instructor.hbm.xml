@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.Instructor" table="instructor">
+    <id column="idInstructor" name="idInstructor">
+      <generator class="identity"/>
+    </id>
+    <property column="nombreCompleto" name="nombreCompleto"/>
+    <property column="direccion" name="direccion"/>
+    <property column="profesion" name="profesion"/>
+    <property column="telefonoCasa" name="telefonoCasa"/>
+    <property column="telefonoCelular" name="telefonoCelular"/>
+    <property column="telefonoTrabajo" name="telefonoTrabajo"/>
+    <property column="correoElectronico" name="correoElectronico"/>
+    <property column="fechaNacimiento" name="fechaNacimiento"/>
+    <property column="empresaLabora" name="empresaLabora"/>
+    <property column="puesto" name="puesto"/>
+    <property column="foto" name="foto"/>
+    <property column="estado" name="estado"/>
+    <property column="idUsuario" name="idUsuario"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.AreaCET" column="idArea" name="areaCET" lazy="false"/>
+    <set name="instructorAsignatura" table="instructor_asignatura" lazy="false">
+      <key>
+        <column name="idInstructor"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorAsignatura"/>
+    </set>
+  </class>
+</hibernate-mapping>

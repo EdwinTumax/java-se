@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.DatosAcademico" table="datos_academico">
+    <id column="idAspirante" name="idAspirante">
+      <generator class="foreign">
+        <param name="property">aspirante</param>
+      </generator>
+    </id>
+    <property column="anio" name="anio" type="java.lang.Integer"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.GrupoCT" column="idGrupoCT" lazy="false" name="grupoCT"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.GrupoBA" column="idGrupoBA" lazy="false" name="grupoBA"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.GrupoPE" column="idGrupoPE" lazy="false" name="grupoPE"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.aspirante.bean.Carrera" column="idCarrera" lazy="false" name="carrera"/>
+    <property column="deseoCarrera" name="deseoCarrera" type="java.lang.String"/>
+    <property column="bachillerato" name="bachillerato" type="java.lang.Boolean"/>
+    <property column="promoTerceroBasico" name="promoTerceroBasico" type="java.lang.Integer"/>
+    <property column="grado" name="grado" type="java.lang.String"/>
+    <one-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante" constrained="true" name="aspirante"/>
+  </class>
+</hibernate-mapping>

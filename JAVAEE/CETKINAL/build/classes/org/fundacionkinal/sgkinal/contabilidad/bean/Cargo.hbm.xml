@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.Cargo" table="cargo">
+    <id column="idCargo" name="idCargo">
+      <generator class="assigned"/>
+    </id>
+    <property column="cargo" name="cargo"/>
+    <property column="idDocumento" name="idDocumento"/>
+    <property column="prefijo" name="prefijo"/>
+    <property column="monto" name="monto"/>
+    <property column="generaMora" name="generaMora"/>
+    <property column="mora" name="mora"/>
+  </class>
+</hibernate-mapping>

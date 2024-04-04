@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.moodle.bean.MdlQuiz" table="mdl_quiz">
+    <id column="id" name="idQuiz">
+      <generator class="identity"/>
+    </id>
+    <property column="course" name="idCourse" type="integer"/>
+    <property column="name" name="nombre" type="string"/>
+    <property column="sumgrades" name="valor" type="integer"/>
+  </class>
+</hibernate-mapping>

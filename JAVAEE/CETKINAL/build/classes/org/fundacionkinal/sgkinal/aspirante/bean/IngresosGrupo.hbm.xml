@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.IngresosGrupo" table="ingresos_grupo">
+    <id column="idAspirante" name="idAspirante">
+      <generator class="foreign">
+        <param name="property">aspirante</param>
+      </generator>
+    </id>
+    <property column="ingresosPadre" name="ingresosPadre" type="java.lang.Double"/>
+    <property column="ingresosMadre" name="ingresosMadre" type="java.lang.Double"/>
+    <property column="otrosIngresos" name="otrosIngresos" type="java.lang.Double"/>
+    <property column="totalIngresos" name="totalIngresos" type="java.lang.Double"/>
+    <one-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante" constrained="true" name="aspirante"/>
+  </class>
+</hibernate-mapping>

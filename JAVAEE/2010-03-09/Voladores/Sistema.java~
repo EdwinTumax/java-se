@@ -1,0 +1,10 @@
+public class Sistema{
+ public static void main(String args[]){
+ 	Paloma paloma1 = new Paloma();
+	Avion avion1 = new Avion();
+	Helicoptero = new Helicoptero();
+	paloma1.Volador();
+	avion1.Volador();
+	Helicoptero.Volador();
+ }
+}

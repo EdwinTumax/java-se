@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.certificaciones.bean.DetalleCertificacion" table="detallecertificacion">
+    <id column="codigoDetalle" name="codigoDetalle">
+      <generator class="identity"/>
+    </id>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.certificaciones.bean.EncabezadoCertificacion" column="idEncabezado" lazy="false" name="encabezadoCertificacion"/>
+    <many-to-one cascade="save-update" class="org.fundacionkinal.sgkinal.certificaciones.bean.Nivel" column="idNivel" lazy="false" name="nivel"/>
+    <property column="anio" name="anio"/>
+    <property column="colegio" name="colegio"/>
+    <property column="matriculaCodigoPersonal" name="matriculaCodigoPersonal"/>
+    <property column="fecha" name="fecha"/>
+    <property column="lugar" name="lugar"/>
+    <property column="direccion" name="direccion"/>    
+    <property column="materiaUno" name="materiaUno"/>
+    <property column="fechaUno" name="fechaUno"/>
+    <property column="materiaDos" name="materiaDos"/>
+    <property column="fechaDos" name="fechaDos"/>
+    <property column="materiaTres" name="materiaTres"/>
+    <property column="fechaTres" name="fechaTres"/>
+    <property column="materiaCuatro" name="materiaCuatro"/>
+    <property column="fechaCuatro" name="fechaCuatro"/>
+    <property column="materiaCinco" name="materiaCinco"/>
+    <property column="fechaCinco" name="fechaCinco"/>
+    <property column="materiaSeis" name="materiaSeis"/>
+    <property column="fechaSeis" name="fechaSeis"/>
+    <property column="materiaSiete" name="materiaSiete"/>
+    <property column="fechaSiete" name="fechaSiete"/>
+    <property column="materiaOcho" name="materiaOcho"/>
+    <property column="fechaOcho" name="fechaOcho"/>
+    <property column="materiaNueve" name="materiaNueve"/>
+    <property column="fechaNueve" name="fechaNueve"/>
+    <property column="materiaDiez" name="materiaDiez"/>
+    <property column="fechaDiez" name="fechaDiez"/>
+    <property column="materiaOnce" name="materiaOnce"/>
+    <property column="fechaOnce" name="fechaOnce"/>
+    <property column="materiaDoce" name="materiaDoce"/>
+    <property column="fechaDoce" name="fechaDoce"/>
+    
+  </class>
+</hibernate-mapping>

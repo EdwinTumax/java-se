@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.Municipio" table="municipio">
+    <id column="idMunicipio" name="idMunicipio">
+      <generator class="identity"/>
+    </id>
+    <many-to-one column="idDepartamento" name="departamento"/>
+    <property column="municipio" name="municipio"/>
+  </class>
+</hibernate-mapping>

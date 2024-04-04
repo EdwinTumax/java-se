@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.DatosFinanciero" table="datos_financiero">
+    <id column="idAspirante" name="idAspirante">
+      <generator class="foreign">
+        <param name="property">aspirante</param>
+      </generator>
+    </id>
+    <property column="noBoletaInscripcion" name="noBoletaInscripcion" type="java.lang.Integer"/>
+    <property column="noBoletaUniforme" name="noBoletaUniforme" type="java.lang.Integer"/>
+    <property column="anio" name="anio" type="java.lang.String"/>
+    <property column="inscripcion" name="inscripcion" type="java.lang.Double"/>
+    <property column="cuota" name="cuota" type="java.lang.Double"/>
+    <property column="noPagosConvenio" name="noPagosConvenio" type="java.lang.Integer"/>
+    <property column="noPagosFicha" name="noPagosFicha" type="java.lang.Integer"/>
+    <property column="primerPago" name="primerPago" not-null="false" type="java.lang.Double"/>
+    <property column="segundoPago" name="segundoPago" not-null="false" type="java.lang.Double"/>
+    <property column="uniforme" name="uniforme" type="java.lang.Double"/>
+    <one-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante" constrained="true" name="aspirante"/>
+  </class>
+</hibernate-mapping>

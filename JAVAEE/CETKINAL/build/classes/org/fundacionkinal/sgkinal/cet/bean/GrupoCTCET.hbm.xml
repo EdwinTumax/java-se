@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.GrupoCTCET" table="grupo_ct">
+    <id column="idGrupoCT" name="idGrupoCT">
+      <generator class="identity"/>
+    </id>
+    <property column="grupo" name="grupo"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.AreaCET" column="idArea" name="area" lazy = "false"/>
+    <set name="instructorGrupoCT" table="instructor_grupo_ct">
+      <key>
+        <column name="idGrupoCT"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorGrupoCT"/>
+    </set>
+    <set name="datosAcademico" table="datos_academico" lazy="false">
+      <key>
+        <column name="idGrupoCT"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.DatosAcademicoCET"/>
+    </set>
+    <filter condition=":idAreaParametro = idArea" name="filtroAreaAcademica"/>
+    <filter condition=":idAreaParametro != idArea" name="filtroAreaSinBasicos"/>
+  </class>
+  <filter-def name="filtroAreaAcademica">
+    <filter-param name="idAreaParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroAreaSinBasicos">
+    <filter-param name="idAreaParametro" type="int"/>
+  </filter-def>
+</hibernate-mapping>

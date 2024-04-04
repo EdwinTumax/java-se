@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="connection.pool_size">10</property>
+    <property name="current_session_context_class">thread</property>
+    <property name="show_sql">false</property>
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <mapping resource="org/fundacionkinal/sgkinal/moodle/bean/MdlUser.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/moodle/bean/MdlCourse.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/moodle/bean/MdlGroup.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/moodle/bean/MdlQuiz.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/moodle/bean/MdlQuizAttempts.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/moodle/bean/MdlGroupMember.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/moodle/bean/MdlCourseCategories.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

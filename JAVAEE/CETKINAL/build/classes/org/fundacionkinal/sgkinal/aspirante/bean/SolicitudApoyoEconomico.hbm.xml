@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.SolicitudApoyoEconomico" table="solicitud_apoyo_economico">
+    <id column="idAspirante" name="idAspirante">
+      <generator class="foreign">
+        <param name="property">aspirante</param>
+      </generator>
+    </id>
+    <property column="compromisoCuota" name="compromisoCuota" type="java.lang.Double"/>
+    <property column="nombreEncargado" name="nombreEncargado" type="java.lang.String"/>
+    <property column="cedulaDpi" name="cedulaDpi" type="java.lang.String"/>
+    <property column="fecha" name="fecha" type="java.lang.String"/>
+    <one-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante" constrained="true" name="aspirante"/>
+  </class>
+</hibernate-mapping>

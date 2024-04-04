@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.Salon" table="salon">
+    <id column="idSalon" name="idSalon">
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.AreaCET" column="idArea" name="areaCET"/>
+    <property column="salon" name="salon"/>
+    <set name="instructorGrupoCT" table="instructor_grupo_ct">
+      <key>
+        <column name="idSalon"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorGrupoCT"/>
+    </set>
+    <set name="instructorGrupoBA" table="instructor_grupo_ba">
+      <key>
+        <column name="idSalon"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorGrupoBA"/>
+    </set>
+    <set name="instructorGrupoPE" table="instructor_grupo_pe">
+      <key>
+        <column name="idSalon"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorGrupoPE"/>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.max_fetch_depth">0</property>
+    <property name="connection.pool_size">10</property>
+    <property name="current_session_context_class">thread</property>
+    <property name="show_sql">false</property>
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/GrupoBA.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/GrupoCT.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/GrupoPE.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/Religion.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/Colegio.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/FechaExamen.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/Aspirante.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/SituacionPadres.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/GrupoFamiliar.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/EgresosGrupo.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/IngresosGrupo.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/SolicitudApoyoEconomico.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/DatosFinanciero.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/Carrera.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/DatosAcademico.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/DatosPariente.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/Asignacion.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/ExamenClave.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/RespuestaClave.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/ResultadoClave.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/DetalleResultadoClave.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/Escuela.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/aspirante/bean/Area.hbm.xml"/>
+    <!--
+    <mapping resource="org/fundacionkinal/sgkinal/bean/Respuesta_suceso.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/bean/Respuesta_cuestionario.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/bean/Cuestionario.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/bean/Pregunta_cuestionario.hbm.xml"/>-->
+  </session-factory>
+</hibernate-configuration>

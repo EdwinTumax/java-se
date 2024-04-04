@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.Asignatura" table="asignatura">
+    <id column="idAsignatura" name="idAsignatura">
+      <generator class="identity"/>
+    </id>
+    <property column="asignatura" name="asignatura"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.Nivel" column="idNivel" name="nivel" lazy="false"/>
+    <set name="instructoAsignatura" table="instructor_asignatura">
+      <key>
+        <column name="idAsignatura"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.InstructorAsignatura"/>
+    </set>
+    <filter condition=":idNivelParametro != idNivel" name="filtroAsignaturaDiversificado"/>
+    <filter condition=":idNivelParametro = idNivel" name="filtroAsignaturaBasico"/>
+    <filter condition=":idNivelParametro = idNivel" name="filtroAsignatura"/>
+    <filter condition=":idNivelParametroTecnico = idNivel or :idNivelParametroAcademico = idNivel " name="filtroAsignaturaTecnicoAcademico"/>
+  </class>
+  <filter-def name="filtroAsignaturaBasico">
+    <filter-param name="idNivelParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroAsignaturaDiversificado">
+    <filter-param name="idNivelParametro" type="int"/>
+  </filter-def>
+  <filter-def name="filtroAsignatura">
+    <filter-param name="idNivelParametro" type="int"/>
+  </filter-def>
+   <filter-def name="filtroAsignaturaTecnicoAcademico">
+    <filter-param name="idNivelParametroTecnico" type="int"/>
+    <filter-param name="idNivelParametroAcademico" type="int"/>
+  </filter-def>
+</hibernate-mapping>

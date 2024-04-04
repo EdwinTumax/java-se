@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.Nivel" table="nivel">
+    <id column="idNivel" name="idNivel">
+      <generator class="assigned"/>
+    </id>
+    <property column="nivel" name="nivel"/>
+    <set name="asignatura" table="asignatura">
+      <key>
+        <column name="idNivel"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.Asignatura"/>
+    </set>
+  </class>
+</hibernate-mapping>

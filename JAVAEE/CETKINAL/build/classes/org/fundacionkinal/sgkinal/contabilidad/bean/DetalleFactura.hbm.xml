@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.DetalleFactura" table="detalle_factura">
+    <id column="idDetalle" name="idDetalle">
+      <generator class="identity"/>
+    </id>    
+    <many-to-one name="factura" column="idFactura" cascade="all" lazy="false"/>
+    <property column="cargo" name="cargo"/>
+    <property column="anio" name="anio"/>
+    <property column="descripcion" name="descripcion"/>
+    <property column="cantidad" name="cantidad"/>
+    <property column="precio" name="precio"/>
+  </class>
+</hibernate-mapping>

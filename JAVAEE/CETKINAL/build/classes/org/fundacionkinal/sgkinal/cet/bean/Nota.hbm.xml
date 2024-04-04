@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.Nota" table="nota">
+    <composite-id name="llaveNota">
+      <key-property column="carne" name="carne"/>
+      <key-property column="idAsignatura" name="idAsignatura"/>
+      <key-property column="ano" name="ano"/>
+    </composite-id>
+    <property column="bim1" name="bim1" type="java.lang.Long"/>
+    <property column="r1" name="r1"/>
+    <property column="bim2" name="bim2"/>
+    <property column="r2" name="r2"/>
+    <property column="bim3" name="bim3"/>
+    <property column="r3" name="r3"/>
+    <property column="bim4" name="bim4"/>
+    <property column="r4" name="r4"/>
+    <property column="bim5" name="bim5"/>
+    <property column="r5" name="r5"/>
+    <property column="final" name="notaFinal"/>
+    <property column="1R" name="primeraRetrasada"/>
+    <property column="2R" name="segundaRetrasada"/>
+    <many-to-one column="idAsignatura" insert="false" name="asignatura" update="false" lazy="false"/>
+    <many-to-one column="carne" name="datosAcademico" insert="false" update="false"/>
+    <many-to-one column="carne" name="alumno" insert="false" update="false" fetch="select" not-null="true"/>
+  </class>
+  
+</hibernate-mapping>

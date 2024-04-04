@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.GenerarInscripcion" table="alumno">
+    <id column="carne" name="carne">
+      <generator class="identity"/>
+    </id>
+  </class>
+    <sql-query name="sp_inscripcion" callable="true">
+        <return alias="inscripcionAlumno" class="org.fundacionkinal.sgkinal.cet.bean.GenerarInscripcion" >
+            <return-property name="carne"  column="error"/>
+        </return>
+        {call dbkinal2014.sp_inscripcion(:_idAspirante,:_numeroPagosInscripcion:_idTalonario,:_anio,:_numeroBoletaInscripcion,:_numeroBoletaUniforme)}
+        <!--* EN CASO DE NO ESPERAR NADA A CAMBIO DEL PROCEDIMIENTO ALMACENADO
+                * DEFINIR PROCEDIMIENTO COMO:
+                        {?=call sp_autenticarAdministradorPreceptoria(:user,:pass)}	
+        -->
+    </sql-query>
+</hibernate-mapping>

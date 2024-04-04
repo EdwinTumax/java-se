@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.generate_statistics">true</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.max_fetch_depth">0</property>
+    <property name="connection.pool_size">12</property>
+    <property name="current_session_context_class">thread</property>
+    <property name="show_sql">false</property>
+    <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Salon.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/CarreraCET.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/ReligionCET.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/AreaCET.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Departamento.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Municipio.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Asignatura.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Alumno.hbm.xml"/>
+    <!--<mapping resource="org/fundacionkinal/sgkinal/cet/bean/Clave.hbm.xml"/>-->
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/GrupoBACET.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/GrupoCTCET.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/GrupoPECET.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/DatosAcademicoCET.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Instructor.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/InstructorAsignatura.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/InstructorGrupoBA.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/InstructorGrupoCT.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/InstructorGrupoPE.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Envio.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/CategoriaActividad.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/CabNota.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/DetalleActividad.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/DetalleNota.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Nivel.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/BitacoraNota.hbm.xml"/>
+    <!--<mapping resource="org/fundacionkinal/sgkinal/cet/bean/UsuarioCET.hbm.xml"/>-->
+    <!--<mapping resource="org/fundacionkinal/sgkinal/cet/bean/ControlNota.hbm.xml"/>-->
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/Nota.hbm.xml"/>
+    <mapping resource="org/fundacionkinal/sgkinal/cet/bean/CuentasXCobrar.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

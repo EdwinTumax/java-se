@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.DetalleResultadoClave" table="detalle_resultado_clave">
+    <composite-id name="detalleResultadoClaveID">
+      <key-property column="idResultado" name="idResultado"/>
+      <key-property column="numeroPregunta" name="numeroPregunta"/>
+    </composite-id>
+    <property column="respuesta" name="respuesta" type="java.lang.String"/>
+    <property column="resultado" name="resultado" type="java.lang.String"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.ResultadoClave" column="idResultado" insert="false" name="resultadoClave" update="false"/>
+  </class>
+</hibernate-mapping>

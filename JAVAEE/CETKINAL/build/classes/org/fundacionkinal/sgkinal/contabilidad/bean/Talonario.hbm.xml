@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.contabilidad.bean.Talonario" table="talonario">
+    <id column="idTalonario" name="idTalonario">
+      <generator class="identity"/>
+    </id>
+    <property column="enero" name="enero"/>
+    <property column="febrero" name="febrero"/>
+    <property column="marzo" name="marzo"/>
+    <property column="abril" name="abril"/>
+    <property column="mayo" name="mayo"/>
+    <property column="junio" name="junio"/>
+    <property column="julio" name="julio"/>
+    <property column="agosto" name="agosto"/>
+    <property column="septiembre" name="septiembre"/>
+    <property column="octubre" name="octubre"/>
+    <property column="noviembre" name="noviembre"/>
+    <property column="diciembre" name="diciembre"/>
+    <property column="anio" name="anio"/>
+    <property column="estado" name="estado"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.contabilidad.bean.EscuelaCON" column="idEscuela" name="escuela" lazy="false"/>
+  </class>
+</hibernate-mapping>

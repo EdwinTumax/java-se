@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Aspirantes" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="267dc441-bd4d-4295-850b-dda4b497c0e6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idFecha" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ExamenFecha" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="icono" class="java.io.InputStream"/>
+	<parameter name="idEscuela" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nivel" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA["//172.16.16.19/aplicacion/appkinal/reporte"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT DISTINCT
+     aspirante.`nombres` AS aspirante_nombres,
+     aspirante.`apellidos` AS aspirante_apellidos,
+     aspirante.`noExpediente` AS aspirante_no_expediente,
+     aspirante.`papeleriaCompleta` AS aspirante_papeleria_completa
+FROM aspirante
+WHERE
+     aspirante.idFechaExamen = $P{idFecha}
+     and aspirante.idEscuela = $P{idEscuela}
+ORDER BY
+     aspirante.`apellidos` ASC]]>
+	</queryString>
+	<field name="aspirante_nombres" class="java.lang.String"/>
+	<field name="aspirante_apellidos" class="java.lang.String"/>
+	<field name="aspirante_no_expediente" class="java.lang.String"/>
+	<field name="aspirante_papeleria_completa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="edb1adcb-b223-42dd-98a1-efd9f3a421aa" x="239" y="42" width="261" height="31"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Baskerville Old Face" size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resultado Aspirantes]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement uuid="90b2cca8-afe9-493c-b6c0-1858e3dfb60b" x="-21" y="18" width="793" height="20" backcolor="#000066"/>
+			</rectangle>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement uuid="1f0a4c91-694b-4244-b5b0-23d64e2c885b" x="0" y="0" width="63" height="73"/>
+				<imageExpression><![CDATA[$P{icono}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement uuid="8d19f66e-cbf0-4a99-a435-1c867f19f639" x="226" y="74" width="287" height="17"/>
+				<textElement textAlignment="Center">
+					<font fontName="Baskerville Old Face" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ExamenFecha}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="216d82db-453f-4396-bf39-b73ecf20f2a8" x="226" y="91" width="287" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="Baskerville Old Face" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nivel}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="12" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="33" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement uuid="2c4cac83-a536-403f-b2fb-a2784523a820" x="0" y="2" width="753" height="29"/>
+			</rectangle>
+			<staticText>
+				<reportElement uuid="3404bab6-a3b7-4e0b-9be7-26cc2f3f10fc" x="386" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expediente]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="84768333-b8bb-49fe-a0ff-b2629c74d260" x="486" y="0" width="65" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Papeleria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e6d3e1a9-584c-4e15-ba52-27855bec0133" x="215" y="1" width="166" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombres]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="88bd12c2-8e04-43a8-a289-d66ae1cfeaf6" x="60" y="2" width="150" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8343a9c2-84c6-4dbb-9ca8-2f42e4aa8ae9" x="591" y="2" width="52" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Materia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="90a41746-c59c-47d4-9ea1-1026f4000094" x="684" y="2" width="33" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ Nota]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="49" splitType="Stretch">
+			<textField>
+				<reportElement uuid="6c814cb6-c191-4b87-a7ae-1c12e8347e57" x="60" y="0" width="150" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspirante_apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="70b7e175-5023-482b-99b9-4a6f9fc8fca1" x="386" y="0" width="100" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspirante_no_expediente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8a2e5950-7cc8-4362-ae95-0a0dba24f9d6" x="486" y="0" width="65" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspirante_papeleria_completa}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="1ed330a1-8bc1-4528-b25f-d3fe7c6b1736" x="0" y="44" width="752" height="1" backcolor="#0A0A74"/>
+				<graphicElement>
+					<pen lineWidth="2.25" lineStyle="Double" lineColor="#000099"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement uuid="40061177-98cc-439f-9f03-dd39b5083749" x="215" y="1" width="166" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{aspirante_nombres}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="b5372bd5-f824-4f45-82a7-51ae03bdf103" x="563" y="0" width="189" height="41"/>
+				<subreportParameter name="noExpediente">
+					<subreportParameterExpression><![CDATA[$F{aspirante_no_expediente}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR}+"//SubReporteAspirantesResultadoBasicos.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<rectangle>
+				<reportElement uuid="f46455b7-02f3-4f57-9fcd-c202d6f4a15e" x="-21" y="1" width="793" height="20" backcolor="#000066"/>
+			</rectangle>
+		</band>
+	</pageFooter>
+</jasperReport>

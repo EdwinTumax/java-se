@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.ControlNota" table="controlnota">
+    <id column="clave" name="clave">
+      <generator class="identity"/>
+    </id>
+    <property column="fecha" name="fecha"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.Asignatura" column="idAsignatura" name="asignatura"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.Envio" column="idEnvio" name="envio"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.cet.bean.UsuarioCET" column="idUsuario" name="usuario"/>
+  </class>
+</hibernate-mapping>

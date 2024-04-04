@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AlumnoAsignatura" language="groovy" pageWidth="555" pageHeight="802" columnWidth="555" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="2b2ff018-9a08-4245-9443-d4387dfe2816">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($V{REPORT_COUNT}.intValue()%2==0)]]></conditionExpression>
+			<style backcolor="#EFF7FF"/>
+		</conditionalStyle>
+	</style>
+	<subDataset name="DetalleZona" uuid="5468e5ff-ef09-481e-94b4-c7ad5b26155a">
+		<queryString language="SQL">
+			<![CDATA[select detalle_actividad.idActividad, detalle_actividad.actividad, detalle_actividad.valor from detalle_actividad where detalle_actividad.idcab = 566]]>
+		</queryString>
+		<field name="idActividad" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="actividad" class="java.lang.String">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+		<field name="valor" class="java.lang.Integer">
+			<fieldDescription><![CDATA[]]></fieldDescription>
+		</field>
+	</subDataset>
+	<parameter name="GRUPOCT" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="GRUPOPE" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IDENVIO" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["\\\\vmware-host\\Shared Folders\\Documentos\\Reportes CET\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="carne" class="java.lang.String"/>
+	<parameter name="bim" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT cab_nota.idCab, asignatura.asignatura as asignatura, nota.bim$P{IDENVIO} as bimestre FROM cab_nota INNER JOIN nota ON cab_nota.`idAsignatura` = nota.`idAsignatura` INNER JOIN asignatura ON cab_nota.idasignatura = asignatura.idAsignatura WHERE cab_nota.grupo = $P{GRUPOCT} AND cab_nota.idEnvio = $P{IDENVIO} AND nota.`carne` = $P{carne} union SELECT cab_nota.idCab, asignatura.asignatura as asignatura, nota.bim$P{IDENVIO} as bimestre FROM cab_nota INNER JOIN nota ON cab_nota.`idAsignatura` = nota.`idAsignatura` INNER JOIN asignatura ON cab_nota.idasignatura = asignatura.idAsignatura WHERE cab_nota.grupo = $P{GRUPOPE} AND cab_nota.idEnvio = $P{IDENVIO} AND nota.`carne` = $P{carne}]]>
+	</queryString>
+	<field name="idCab" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="asignatura" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bimestre" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="e7b1f479-7066-4984-b23b-802ac61e246f" x="0" y="0" width="122" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ASIGNATURA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8308de5d-a57e-4866-b979-dfb87f0a3cbf" x="122" y="0" width="39" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c269539a-79a6-4985-af2a-ec1ac6949192" x="161" y="0" width="254" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DETALLE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eb96f43c-63ff-4108-b11d-72423c765328" x="415" y="0" width="140" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOTAS]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="a1b51d6d-e506-4deb-9b13-f1cf2d98025a" x="4" y="0" width="118" height="18"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{asignatura}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0">
+				<reportElement uuid="5e126e61-be15-4e11-b056-c9698d1e44ae" x="122" y="0" width="39" height="20"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bimestre}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement uuid="1525241f-c5c7-41b9-8b5b-2d2901a847a3" x="161" y="0" width="200" height="20"/>
+				<subreportParameter name="idCab">
+					<subreportParameterExpression><![CDATA[$F{idCab}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$P{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "Detalle_Actividades.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

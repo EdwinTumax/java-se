@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.GrupoFamiliar" table="grupo_familiar">
+    <id column="idGrupoFamiliar" name="idGrupoFamiliar">
+      <generator class="identity"/>
+    </id>
+    <property column="nombreCompleto" name="nombreCompleto" type="java.lang.String"/>
+    <property column="parentesco" name="parentesco" type="java.lang.String"/>
+    <property column="edad" name="edad" type="java.lang.Integer"/>
+    <property column="ocupacion" name="ocupacion" type="java.lang.String"/>
+    <property column="lugarTrabajo" name="lugarTrabajo" type="java.lang.String"/>
+    <property column="sueldo" name="sueldo" type="java.lang.Double"/>
+    <many-to-one class="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante" column="idAspirante" name="aspirante"/>
+  </class>
+</hibernate-mapping>

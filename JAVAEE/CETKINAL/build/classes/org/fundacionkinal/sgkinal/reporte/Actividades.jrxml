@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Actividades" language="groovy" columnCount="58" printOrder="Horizontal" pageWidth="792" pageHeight="1224" columnWidth="12" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ba1cf5e1-bd5a-4420-9811-0b86b592580c">
+	<property name="ireport.zoom" value="1.3310000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="title" forecolor="#000000" backcolor="#000000" fill="Solid">
+		<pen lineWidth="1.0" lineColor="#CCCCCC"/>
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.5"/>
+			<leftPen lineWidth="1.5"/>
+			<bottomPen lineWidth="1.5" lineStyle="Solid"/>
+			<rightPen lineWidth="1.5" lineStyle="Solid"/>
+		</box>
+	</style>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\ALVARO\\Documents\\Reportes\\Boleta Notas\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="grupo" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT alumno.carne, alumno.apellidos, alumno.nombres
+FROM alumno INNER JOIN datos_academico ON alumno.carne = datos_academico.carne
+	    INNER JOIN grupo_ct ON datos_academico.idGrupoCT = grupo_ct.idGrupoCT
+WHERE datos_academico.idGrupoCT = $P{grupo}]]>
+	</queryString>
+	<field name="carne" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="apellidos" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nombres" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<pageHeader>
+		<band height="72">
+			<subreport>
+				<reportElement uuid="6e4882ba-c874-489a-8ba2-9f8c0e9b0986" x="0" y="0" width="36" height="72"/>
+				<subreportParameter name="grupo">
+					<subreportParameterExpression><![CDATA[$P{grupo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="carne">
+					<subreportParameterExpression><![CDATA[$F{carne}]]></subreportParameterExpression>
+				</subreportParameter>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "detalleActividades.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="300" splitType="Stretch">
+			<textField>
+				<reportElement uuid="1d557b6f-70f0-4130-9b9e-2dc48f12c70e" style="table" x="24" y="225" width="12" height="50"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{carne}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="8f877e45-e399-42fd-9961-fe85308dacf6" style="table" x="24" y="100" width="12" height="125"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b4739c9-f2bd-42c2-93f4-1930235977c9" style="table" x="24" y="0" width="12" height="100"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombres}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="b9338314-56cb-4b2e-9e92-f999f22223af" style="table" x="24" y="275" width="12" height="25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="530"/>
+	</summary>
+</jasperReport>

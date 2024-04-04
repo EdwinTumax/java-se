@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.FechaExamen" table="fecha_examen">
+    <id column="idFechaExamen" name="idFechaExamen">
+      <generator class="identity"/>
+    </id>
+    <property column="anio" name="anio" type="java.lang.Integer"/>
+    <property column="dia" name="dia" type="java.lang.String"/>
+    <property column="mes" name="mes" type="java.lang.Integer"/>
+    <property column="diaFecha" name="diaFecha" type="java.lang.Integer"/>
+    <property column="anioAsignacion" name="anioAsignacion" type="java.lang.Integer"/>
+    <set cascade="all" fetch="select" inverse="true" lazy="true" name="aspirantes" table="aspirante">
+      <key>
+        <column name="idFechaExamen"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.aspirante.bean.Aspirante"/>
+    </set>
+    <set cascade="all" fetch="select" inverse="true" lazy="true" name="examenClave" table="examen_clave">
+      <key>
+        <column name="idFechaExamen"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.aspirante.bean.ExamenClave"/>
+    </set>
+  </class>
+</hibernate-mapping>

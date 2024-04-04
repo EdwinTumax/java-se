@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.Respuesta_suceso" table="respuesta_suceso">
+    <id column="ID_respuesta_suceso" name="ID_respuesta_suceso" type="java.lang.Integer">
+      <generator class="native"/>
+    </id>
+    <property column="suceso_vivido" name="suceso_vivido" type="java.lang.String"/>
+    <property column="observaciones" name="observaciones" type="java.lang.String"/>
+    <many-to-one cascade="all" class="org.fundacionkinal.sgkinal.aspirante.bean.Cuestionario" column="ID_cuestionario" name="cuestionario"/>
+  </class>
+</hibernate-mapping>

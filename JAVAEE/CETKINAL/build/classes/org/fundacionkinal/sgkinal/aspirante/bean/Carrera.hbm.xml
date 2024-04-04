@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.aspirante.bean.Carrera" table="carrera">
+    <id column="idCarrera" name="idCarrera">
+      <generator class="identity"/>
+    </id>
+    <property column="nombre" name="nombre"/>
+    <set cascade="all" lazy="false" name="datosAcademico" table="datos_academico">
+      <key>
+        <column name="idCarrera"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.aspirante.bean.DatosAcademico"/>
+    </set>
+    <property column="idArea" name="idArea"/>
+  </class>
+</hibernate-mapping>

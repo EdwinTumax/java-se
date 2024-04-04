@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.certificaciones.bean.Nivel" table="nivel">
+    <id column="idNivel" name="idNivel">
+      <generator class="identity"/>
+    </id>
+    <property column="nivel" name="nivel"/>
+  </class>
+</hibernate-mapping>

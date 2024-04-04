@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="org.fundacionkinal.sgkinal.cet.bean.CabNota" table="cab_nota">
+    <id column="idCab" name="idCab">
+      <generator class="identity"/>
+    </id>
+    <many-to-one column="idAsignatura" name="asignatura" lazy="false"/>
+    <set name="actividades" table="detalle_actividad" lazy="false">
+      <key>
+        <column name="idCab"/>
+      </key>
+      <one-to-many class="org.fundacionkinal.sgkinal.cet.bean.DetalleActividad"/>
+    </set>
+    <property column="grupo" name="grupo"/>
+    <many-to-one column="idEnvio" name="envio" lazy="false"/>
+    <property column="estatus" name="estatus"/>
+    <property column="remedial" name="remedial"/>
+  </class>
+</hibernate-mapping>
